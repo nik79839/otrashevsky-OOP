@@ -1,2 +1,2 @@
 ﻿Console.WriteLine("Hello, World!!!!!!!!!!!!!!!!!!!!!");
-int a = 60;
+int a = 6000;
