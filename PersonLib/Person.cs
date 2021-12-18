@@ -169,6 +169,76 @@ namespace PersonLib
                 return number;
             }
         }
+        
+        /// <summary>
+        /// Вывод информации о персоне
+        /// </summary>
+        public string Info
+        {
+            get
+            {
+                return $"{Name} {Surname}, Age: {Age}, Gender: {Gender}";
+            }
+        }
+
+        /// <summary>
+        /// Добавление персоны через консоль
+        /// </summary>
+        /// <returns>Персона</returns>
+        public static Person AddPersonConsole()
+        {
+            Console.WriteLine("Введите имя");
+            string name = Console.ReadLine();
+            Console.WriteLine("Введите фамилию");
+            string surname = Console.ReadLine();
+            Console.WriteLine("Введите возраст");
+            int age = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите пол, 0 - мужской, 1 - женский");
+            int gender = Convert.ToInt32(Console.ReadLine());
+            Gender gender1 = (Gender)Enum.GetValues(typeof(Gender)).GetValue(gender);
+            return new Person(name,surname,age,gender1);
+        }
+
+        public static Person GetRandomPerson()
+        {
+            string[] maleNames = new string[]
+            {
+                "John", "Carl", "Rick", "Mattew",
+                "Nicholas", "Robert", "Samuel",
+                "Stan", "Kenny", "Severus", "Jake"
+            };
+
+            string[] femaleNames = new string[]
+            {
+                "Lyla", "Samanta", "Kate", "Kira",
+                "Amelia", "Julia", "Anastasia",
+                "Sindy", "Luna", "Violet", "Anna"
+            };
+
+            string[] allSurnames = new string[]
+            {
+                "Potter", "Granger", "Black", "Malfoy",
+                "Weasley", "Dursley", "Riddle",
+                "Krum", "Snape", "Lovegood", "Lestrange"
+            };
+            Random random = new Random();
+            string name;
+            Gender gender = (Gender)random.Next(0, 2);
+            switch (gender)
+            {
+                case Gender.Male:
+                    name = maleNames[random.Next(maleNames.Length)];
+                    break;
+                case Gender.Female:
+                    name = femaleNames[random.Next(femaleNames.Length)];
+                    break;
+                default:
+                    return new Person("Default", "Person", 0, Gender.Male);
+            }
+            string surname = allSurnames[random.Next(allSurnames.Length)];
+            int age = random.Next(0, 120);
+            return new Person(name, surname, age, gender);
+        }
 
 
     }
