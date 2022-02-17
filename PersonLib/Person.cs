@@ -23,21 +23,31 @@ namespace PersonLib
         /// Возраст
         /// </summary>
         private int age;
+        
+        /// <summary>
+        /// Пол человека
+        /// </summary>
+        private Gender gender;
 
         /// <summary>
         /// Пол человека
         /// </summary>
-        public Gender Gender { get; set; }
+        public Gender Gender 
+        {
+            get => gender;
+            set
+            {
+                CheckGender((int)value);
+                gender = value;
+            }
+        }
 
         /// <summary>
         /// Имя
         /// </summary>
         public string Name 
-        { 
-            get 
-            { 
-                return name;
-            } 
+        {
+            get => name;
             set 
             {
                 CheckNameSurname(value);
@@ -49,11 +59,8 @@ namespace PersonLib
         /// Возраст
         /// </summary>
         public int Age
-        { 
-            get 
-            { 
-                return age;
-            } 
+        {
+            get => age;
             set 
             {
                 CheckAge(value);
@@ -64,7 +71,25 @@ namespace PersonLib
         /// <summary>
         /// Фамилия
         /// </summary>
-        public string Surname { get { return surname; } set { surname = value; } }
+        public string Surname 
+        { 
+            get => surname;
+            set 
+            {
+                CheckNameSurname(value);
+                surname = ConvertToRightRegister(value);
+            }
+        }
+        
+        /// <summary>
+        /// Максимальный возраст
+        /// </summary>
+        private const int maxAge = 120;
+
+        /// <summary>
+        /// Минимальный возраст
+        /// </summary>
+        private const int minAge = 0;
 
         /// <summary>
         /// Конструктор класса
@@ -116,7 +141,7 @@ namespace PersonLib
         /// <param name="value"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public string CheckNameSurname(string value)
+        private string CheckNameSurname(string value)
         {
             var regex = new Regex("^([A-Za-z]|[А-Яа-я])+(((-| )?([A-Za-z]|" +
                 "[А-Яа-я])+))?$");
@@ -140,11 +165,11 @@ namespace PersonLib
         /// <param name="age">Возраст</param>
         /// <returns>Возраст</returns>
         /// <exception cref="Exception"></exception>
-        public int CheckAge(int age)
+        private int CheckAge(int age)
         {
-            if (age < 0 || age > 120)
+            if (age < minAge || age > maxAge)
             {
-                throw new Exception("Указан неверный возраст");
+                throw new Exception($"Возраст должен быть в диапазоне от {minAge} до {maxAge}");
             }
             else
             {
@@ -196,7 +221,30 @@ namespace PersonLib
             Console.WriteLine("Введите пол, 0 - мужской, 1 - женский");
             int gender = Convert.ToInt32(Console.ReadLine());
             Gender gender1 = (Gender)Enum.GetValues(typeof(Gender)).GetValue(gender);
-            return new Person(name,surname,age,gender1);
+            return new Person(name, surname, age, gender1);
+        }
+
+        /// <summary>
+        /// Обработчик ввода персоны через консоль
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="inputMessage"></param>
+        private static void ActionHandler(Action action, string inputMessage)
+        {
+            while (true)
+            {
+                Console.WriteLine(inputMessage);
+                try
+                {
+                    action.Invoke();
+                    return;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Повторите ввод");
+                }
+            }
         }
 
         public static Person GetRandomPerson()
@@ -236,7 +284,7 @@ namespace PersonLib
                     return new Person("Default", "Person", 0, Gender.Male);
             }
             string surname = allSurnames[random.Next(allSurnames.Length)];
-            int age = random.Next(0, 120);
+            int age = random.Next(minAge, maxAge);
             return new Person(name, surname, age, gender);
         }
 

@@ -57,7 +57,7 @@ namespace PersonLib
         /// Удаление из списка персон по индексу
         /// </summary>
         /// <param name="index"></param>
-        public void DelIndex(int index)
+        public void RemovebyIndex(int index)
         {
             personList = personList.Where((person, i) => i != index).ToArray();
         }
@@ -66,9 +66,9 @@ namespace PersonLib
         /// Удаление определенной персоны
         /// </summary>
         /// <param name="person">Персона</param>
-        public void DeletePersonByIndex(Person person)
+        public void DeletePersonByName(Person person)
         {
-            DelIndex(GetIndexPerson(person));
+            RemovebyIndex(GetIndexPerson(person));
         }
 
         /// <summary>
@@ -92,13 +92,7 @@ namespace PersonLib
         /// <summary>
         /// Возвращает количество персон в списке
         /// </summary>
-        public int Length
-        {
-            get
-            {
-                return personList.Length;
-            }
-        }
+        public int Length => personList.Length;
 
         /// <summary>
         /// Очистка всех персон
@@ -108,7 +102,7 @@ namespace PersonLib
             Array.Resize(ref personList, 0);
         }
 
-        public static void info(PersonList personList)
+        public static void Info(PersonList personList)
         {
             for (int i = 0; i < personList.Length; i++)
             {

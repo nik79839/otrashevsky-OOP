@@ -28,42 +28,49 @@ namespace Lab1
             personList1.AddPersons(personAr1);
             personList2.AddPersons(personAr2);
             Console.WriteLine("List 1");
-            PersonList.info(personList1);
+            PersonList.Info(personList1);
             Console.WriteLine("\nList 2");
-            PersonList.info(personList2);
+            PersonList.Info(personList2);
             Console.ReadKey();
+            Console.WriteLine("");
 
             personList1.AddPerson(new Person("Doctor", "Zoidberg", 98, Gender.Male));
-            Console.WriteLine("List 1");
-            PersonList.info(personList1);
+            Console.WriteLine("Добавление новой персоны в List 1");
+            PersonList.Info(personList1);
             Console.ReadKey();
+            Console.WriteLine("");
 
             personList2.AddPerson(personList1.SearchByIndex(1));
-            Console.WriteLine("List 2");
-            PersonList.info(personList2);
+            Console.WriteLine("Добавление новой персоны в List 2 из List 1");
+            PersonList.Info(personList2);
             Console.ReadKey();
+            Console.WriteLine("");
 
-            personList1.DelIndex(1);
-            Console.WriteLine("List 1");
-            PersonList.info(personList1);
+            personList1.RemovebyIndex(1);
+            Console.WriteLine("Удаление второй персоны из List 1");
+            PersonList.Info(personList1);
             Console.WriteLine("\nList 2");
-            PersonList.info(personList2);
+            PersonList.Info(personList2);
             Console.ReadKey();
+            Console.WriteLine("");
 
             personList2.Clear();
-            Console.WriteLine("\nList 2");
-            PersonList.info(personList2);
+            Console.WriteLine("\nОчистка List 2");
+            PersonList.Info(personList2);
             Console.ReadKey();
+            Console.WriteLine("");
 
             personList2.AddPerson(Person.AddPersonConsole());
             Console.WriteLine("\nList 2");
-            PersonList.info(personList2);
+            PersonList.Info(personList2);
             Console.ReadKey();
+            Console.WriteLine("");
 
             personList2.AddPerson(Person.GetRandomPerson());
-            Console.WriteLine("\nList 2");
-            PersonList.info(personList2);
+            Console.WriteLine("\nДобавление случайной персоны в List 2");
+            PersonList.Info(personList2);
             Console.ReadKey();
+            Console.WriteLine("");
         }
     }
 }
