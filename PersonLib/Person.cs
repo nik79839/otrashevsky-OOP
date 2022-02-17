@@ -12,33 +12,33 @@ namespace PersonLib
         /// <summary>
         /// Имя
         /// </summary>
-        private string name;
+        private string _name;
 
         /// <summary>
         /// Фамилия
         /// </summary>
-        private string surname;
+        private string _surname;
 
         /// <summary>
         /// Возраст
         /// </summary>
-        private int age;
+        private int _age;
         
         /// <summary>
         /// Пол человека
         /// </summary>
-        private Gender gender;
+        private Gender _gender;
 
         /// <summary>
         /// Пол человека
         /// </summary>
         public Gender Gender 
         {
-            get => gender;
+            get => _gender;
             set
             {
                 CheckGender((int)value);
-                gender = value;
+                _gender = value;
             }
         }
 
@@ -47,11 +47,11 @@ namespace PersonLib
         /// </summary>
         public string Name 
         {
-            get => name;
+            get => _name;
             set 
             {
                 CheckNameSurname(value);
-                name = ConvertToRightRegister(value);
+                _name = ConvertToRightRegister(value);
             }
         }
 
@@ -60,11 +60,11 @@ namespace PersonLib
         /// </summary>
         public int Age
         {
-            get => age;
+            get => _age;
             set 
             {
                 CheckAge(value);
-                age = value;
+                _age = value;
             }
         }
 
@@ -73,11 +73,11 @@ namespace PersonLib
         /// </summary>
         public string Surname 
         { 
-            get => surname;
+            get => _surname;
             set 
             {
                 CheckNameSurname(value);
-                surname = ConvertToRightRegister(value);
+                _surname = ConvertToRightRegister(value);
             }
         }
         
@@ -212,16 +212,41 @@ namespace PersonLib
         /// <returns>Персона</returns>
         public static Person AddPersonConsole()
         {
-            Console.WriteLine("Введите имя");
-            string name = Console.ReadLine();
-            Console.WriteLine("Введите фамилию");
-            string surname = Console.ReadLine();
-            Console.WriteLine("Введите возраст");
-            int age = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Введите пол, 0 - мужской, 1 - женский");
-            int gender = Convert.ToInt32(Console.ReadLine());
-            Gender gender1 = (Gender)Enum.GetValues(typeof(Gender)).GetValue(gender);
-            return new Person(name, surname, age, gender1);
+            var defaultPerson = new Person();
+            var actionsTupleList = new List<(Action Action, string Message)>
+            {
+                (
+                    () => { defaultPerson.Name = Console.ReadLine(); },
+                    "Введите имя:"
+                ),
+                (
+                    () =>
+                    {
+                        defaultPerson.Surname = Console.ReadLine();
+                    },
+                    "Введите фамилию:"),
+                (
+                    () =>
+                    {
+                        defaultPerson.Age = Convert.ToInt32(Console.ReadLine());
+                    },
+                    "Введите возраст:"
+                    ),
+                (
+                    () =>
+                    {
+                        int gender = Convert.ToInt32(Console.ReadLine());
+                        defaultPerson.Gender = (Gender)Enum.GetValues(typeof(Gender)).GetValue(gender);
+                    },
+                    "Введите пол, 0 - мужской, 1 - женский"
+                    )
+            };
+
+            foreach (var actionTuple in actionsTupleList)
+            {
+                ActionHandler(actionTuple.Action, actionTuple.Message);
+            }
+            return defaultPerson;
         }
 
         /// <summary>
