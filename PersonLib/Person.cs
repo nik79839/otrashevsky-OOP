@@ -206,6 +206,7 @@ namespace PersonLib
             }
         }
 
+        //TODO:
         /// <summary>
         /// Добавление персоны через консоль
         /// </summary>
@@ -236,6 +237,7 @@ namespace PersonLib
                     () =>
                     {
                         int gender = Convert.ToInt32(Console.ReadLine());
+                        //TODO: RSDN
                         defaultPerson.Gender = (Gender)Enum.GetValues(typeof(Gender)).GetValue(gender);
                     },
                     "Введите пол, 0 - мужской, 1 - женский"
@@ -249,6 +251,7 @@ namespace PersonLib
             return defaultPerson;
         }
 
+        //TODO:
         /// <summary>
         /// Обработчик ввода персоны через консоль
         /// </summary>
@@ -272,6 +275,7 @@ namespace PersonLib
             }
         }
 
+        //TODO: XML
         public static Person GetRandomPerson()
         {
             string[] maleNames = new string[]
@@ -312,7 +316,5 @@ namespace PersonLib
             int age = random.Next(minAge, maxAge);
             return new Person(name, surname, age, gender);
         }
-
-
     }
 }
