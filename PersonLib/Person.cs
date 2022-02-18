@@ -112,7 +112,7 @@ namespace PersonLib
         public Person() : this("Nikita", "Otrashevsky", 23, Gender.Male) { }
 
         /// <summary>
-        /// Проеобразование к правильному регистру
+        /// Проеобразование к правильному регистру с учетом возможности двойных имен
         /// </summary>
         /// <param name="value">Фамилия или имя</param>
         /// <returns></returns>

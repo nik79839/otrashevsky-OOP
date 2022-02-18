@@ -11,7 +11,7 @@ namespace PersonLib
         /// <summary>
         /// Создание списка персон
         /// </summary>
-        public Person[] personList = new Person[0];
+        private Person[] _personList = new Person[0];
 
         /// <summary>
         /// Добавление персоны в конец списка
@@ -19,8 +19,8 @@ namespace PersonLib
         /// <param name="person">Персона</param>
         public void AddPerson(Person person)
         {
-            Array.Resize(ref personList, personList.Length + 1);
-            personList[personList.Length-1] = person;
+            Array.Resize(ref _personList, _personList.Length + 1);
+            _personList[_personList.Length-1] = person;
         }
 
         /// <summary>
@@ -43,9 +43,9 @@ namespace PersonLib
         /// <exception cref="Exception"></exception>
         public int GetIndexPerson(Person person)
         {
-            for (int index = 0; index < personList.Length; index++)
+            for (int index = 0; index < _personList.Length; index++)
             {
-                if (personList[index] == person)
+                if (_personList[index] == person)
                 {
                     return index;
                 }
@@ -59,7 +59,7 @@ namespace PersonLib
         /// <param name="index"></param>
         public void RemovebyIndex(int index)
         {
-            personList = personList.Where((person, i) => i != index).ToArray();
+            _personList = _personList.Where((person, i) => i != index).ToArray();
         }
 
         /// <summary>
@@ -79,9 +79,9 @@ namespace PersonLib
         /// <exception cref="Exception"></exception>
         public Person SearchByIndex(int index)
         {
-            if (index >= 0 && index < personList.Length)
+            if (index >= 0 && index < _personList.Length)
             {
-                return personList[index];
+                return _personList[index];
             }
             else
             {
@@ -92,14 +92,14 @@ namespace PersonLib
         /// <summary>
         /// Возвращает количество персон в списке
         /// </summary>
-        public int Length => personList.Length;
+        public int Length => _personList.Length;
 
         /// <summary>
         /// Очистка всех персон
         /// </summary>
         public void Clear()
         {
-            Array.Resize(ref personList, 0);
+            Array.Resize(ref _personList, 0);
         }
 
         public static void Info(PersonList personList)
