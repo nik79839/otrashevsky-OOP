@@ -206,76 +206,12 @@ namespace PersonLib
             }
         }
 
-        //TODO:
-        /// <summary>
-        /// Добавление персоны через консоль
-        /// </summary>
-        /// <returns>Персона</returns>
-        public static Person AddPersonConsole()
-        {
-            var defaultPerson = new Person();
-            var actionsTupleList = new List<(Action Action, string Message)>
-            {
-                (
-                    () => { defaultPerson.Name = Console.ReadLine(); },
-                    "Введите имя:"
-                ),
-                (
-                    () =>
-                    {
-                        defaultPerson.Surname = Console.ReadLine();
-                    },
-                    "Введите фамилию:"),
-                (
-                    () =>
-                    {
-                        defaultPerson.Age = Convert.ToInt32(Console.ReadLine());
-                    },
-                    "Введите возраст:"
-                    ),
-                (
-                    () =>
-                    {
-                        int gender = Convert.ToInt32(Console.ReadLine());
-                        //TODO: RSDN
-                        defaultPerson.Gender = (Gender)Enum.GetValues(typeof(Gender)).GetValue(gender);
-                    },
-                    "Введите пол, 0 - мужской, 1 - женский"
-                    )
-            };
-
-            foreach (var actionTuple in actionsTupleList)
-            {
-                ActionHandler(actionTuple.Action, actionTuple.Message);
-            }
-            return defaultPerson;
-        }
-
-        //TODO:
-        /// <summary>
-        /// Обработчик ввода персоны через консоль
-        /// </summary>
-        /// <param name="action"></param>
-        /// <param name="inputMessage"></param>
-        private static void ActionHandler(Action action, string inputMessage)
-        {
-            while (true)
-            {
-                Console.WriteLine(inputMessage);
-                try
-                {
-                    action.Invoke();
-                    return;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine("Повторите ввод");
-                }
-            }
-        }
 
         //TODO: XML
+        /// <summary>
+        /// Получение случайной персоны
+        /// </summary>
+        /// <returns></returns>
         public static Person GetRandomPerson()
         {
             string[] maleNames = new string[]
@@ -294,9 +230,9 @@ namespace PersonLib
 
             string[] allSurnames = new string[]
             {
-                "Potter", "Granger", "Black", "Malfoy",
+                "Green", "Gray", "Black", "Orange",
                 "Weasley", "Dursley", "Riddle",
-                "Krum", "Snape", "Lovegood", "Lestrange"
+                "Krum", "White", "Lovegood", "Red"
             };
             Random random = new Random();
             string name;

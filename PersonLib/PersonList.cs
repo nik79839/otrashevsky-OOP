@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 namespace PersonLib
 {
     //TODO: XML
+    /// <summary>
+    /// Класс списка персон
+    /// </summary>
     public class PersonList
     {
         /// <summary>
@@ -101,16 +104,6 @@ namespace PersonLib
         public void Clear()
         {
             Array.Resize(ref _personList, 0);
-        }
-
-        //TODO:
-        //TODO: XML
-        public static void Info(PersonList personList)
-        {
-            for (int i = 0; i < personList.Length; i++)
-            {
-                Console.WriteLine(personList.SearchByIndex(i).Info);
-            }
-        }
+        }       
     }
 }
