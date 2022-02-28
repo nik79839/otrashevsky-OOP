@@ -61,7 +61,7 @@ namespace PersonLib
         /// Удаление из списка персон по индексу
         /// </summary>
         /// <param name="index"></param>
-        public void RemovebyIndex(int index)
+        public void RemoveByIndex(int index)
         {
             _personList = _personList.Where((person, i) => i != index).ToArray();
         }
@@ -72,7 +72,7 @@ namespace PersonLib
         /// <param name="person">Персона</param>
         public void DeletePersonByName(Person person)
         {
-            RemovebyIndex(GetIndexPerson(person));
+            RemoveByIndex(GetIndexPerson(person));
         }
 
         /// <summary>

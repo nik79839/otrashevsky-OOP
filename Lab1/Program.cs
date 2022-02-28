@@ -10,9 +10,12 @@ namespace Lab1
     internal class Program
     {
         //TODO: RSDN
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             //TODO: Отработать вывод Unicode
+            Console.OutputEncoding = System.Text.Encoding.Unicode;
+            Console.InputEncoding = System.Text.Encoding.Unicode;
+
             PersonList personList1 = new PersonList();
             PersonList personList2 = new PersonList();
 
@@ -32,47 +35,47 @@ namespace Lab1
 
             personList1.AddPersons(personAr1);
             personList2.AddPersons(personAr2);
-            Console.WriteLine("List 1");
+            Console.WriteLine("Список 1");
             Info(personList1);
-            Console.WriteLine("\nList 2");
+            Console.WriteLine("\nСписок 2");
             Info(personList2);
             Console.ReadKey();
             Console.WriteLine("");
 
             personList1.AddPerson(new Person("Doc", "Fier", 98, Gender.Male));
-            Console.WriteLine("Добавление новой персоны в List 1\nList 1");
+            Console.WriteLine("Добавление новой персоны в список 1\nСписок 1");
             Info(personList1);
             Console.ReadKey();
             Console.WriteLine("");
 
             personList2.AddPerson(personList1.SearchByIndex(1));
-            Console.WriteLine("Добавление новой персоны в List 2 из List 1\nList 2");
+            Console.WriteLine("Добавление новой персоны в список 2 из списка 1\nСписок 2");
             Info(personList2);
             Console.ReadKey();
             Console.WriteLine("");
 
-            personList1.RemovebyIndex(1);
-            Console.WriteLine("Удаление второй персоны из List 1\nList 1");
+            personList1.RemoveByIndex(1);
+            Console.WriteLine("Удаление второй персоны из списка 1\nСписок 1");
             Info(personList1);
-            Console.WriteLine("\nList 2");
+            Console.WriteLine("\nСписок 2");
             Info(personList2);
             Console.ReadKey();
             Console.WriteLine("");
 
             personList2.Clear();
-            Console.WriteLine("\nОчистка List 2\nList 2");
+            Console.WriteLine("\nОчистка списка 2\nСписок 2");
             Info(personList2);
             Console.ReadKey();
             Console.WriteLine("");
 
             personList2.AddPerson(AddPersonConsole());
-            Console.WriteLine("\nList 2");
+            Console.WriteLine("\nСписок 2");
             Info(personList2);
             Console.ReadKey();
             Console.WriteLine("");
 
             personList2.AddPerson(Person.GetRandomPerson());
-            Console.WriteLine("\nДобавление случайной персоны в List 2");
+            Console.WriteLine("\nДобавление случайной персоны в Список 2");
             Info(personList2);
             Console.ReadKey();
             Console.WriteLine("");

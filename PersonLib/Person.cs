@@ -81,12 +81,12 @@ namespace PersonLib
         /// <summary>
         /// Максимальный возраст
         /// </summary>
-        private const int maxAge = 120;
+        private const int MaxAge = 120;
 
         /// <summary>
         /// Минимальный возраст
         /// </summary>
-        private const int minAge = 0;
+        private const int MinAge = 0;
 
         /// <summary>
         /// Конструктор класса
@@ -164,9 +164,9 @@ namespace PersonLib
         /// <exception cref="Exception"></exception>
         private int CheckAge(int age)
         {
-            if (age < minAge || age > maxAge)
+            if (age < MinAge || age > MaxAge)
             {
-                throw new Exception($"Возраст должен быть в диапазоне от {minAge} до {maxAge}");
+                throw new Exception($"Возраст должен быть в диапазоне от {MinAge} до {MaxAge}");
             }
             else
             {
@@ -195,7 +195,7 @@ namespace PersonLib
         /// <summary>
         /// Вывод информации о персоне
         /// </summary>
-        public string Info => $"{Name} {Surname}, Age: {Age}, Gender: {Gender}";
+        public string Info => $"{Name} {Surname}, Возраст: {Age}, Пол: {Gender}";
 
 
         /// <summary>
@@ -239,7 +239,7 @@ namespace PersonLib
                     return new Person("Default", "Person", 0, Gender.Male);
             }
             string surname = allSurnames[random.Next(allSurnames.Length)];
-            int age = random.Next(minAge, maxAge);
+            int age = random.Next(MinAge, MaxAge);
             return new Person(name, surname, age, gender);
         }
     }
