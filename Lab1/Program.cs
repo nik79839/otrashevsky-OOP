@@ -9,8 +9,10 @@ namespace Lab1
 {
     internal class Program
     {
+        //TODO: RSDN
         static void Main(string[] args)
         {
+            //TODO: Отработать вывод Unicode
             PersonList personList1 = new PersonList();
             PersonList personList2 = new PersonList();
 
@@ -75,8 +77,7 @@ namespace Lab1
             Console.ReadKey();
             Console.WriteLine("");
         }
-
-        //TODO:
+        
         /// <summary>
         /// Добавление персоны через консоль
         /// </summary>
@@ -107,9 +108,8 @@ namespace Lab1
                     () =>
                     {
                         int gender = Convert.ToInt32(Console.ReadLine());
-                        //TODO: RSDN
                         defaultPerson.Gender =
-                        (Gender)Enum.GetValues(typeof(Gender)).GetValue(gender);
+                            (Gender)Enum.GetValues(typeof(Gender)).GetValue(gender);
                     },
                     "Введите пол, 0 - мужской, 1 - женский"
                     )
@@ -121,8 +121,7 @@ namespace Lab1
             }
             return defaultPerson;
         }
-
-        //TODO:
+        
         /// <summary>
         /// Обработчик ввода персоны через консоль
         /// </summary>

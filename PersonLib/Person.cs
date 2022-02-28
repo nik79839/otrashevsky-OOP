@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace PersonLib
 {
@@ -81,6 +77,7 @@ namespace PersonLib
             }
         }
         
+        //TODO: RSDN
         /// <summary>
         /// Максимальный возраст
         /// </summary>
@@ -198,16 +195,9 @@ namespace PersonLib
         /// <summary>
         /// Вывод информации о персоне
         /// </summary>
-        public string Info
-        {
-            get
-            {
-                return $"{Name} {Surname}, Age: {Age}, Gender: {Gender}";
-            }
-        }
+        public string Info => $"{Name} {Surname}, Age: {Age}, Gender: {Gender}";
 
 
-        //TODO: XML
         /// <summary>
         /// Получение случайной персоны
         /// </summary>

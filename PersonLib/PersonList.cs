@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace PersonLib
 {
-    //TODO: XML
     /// <summary>
     /// Класс списка персон
     /// </summary>
@@ -57,6 +56,7 @@ namespace PersonLib
             throw new Exception("Данного человека не существует");
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Удаление из списка персон по индексу
         /// </summary>
