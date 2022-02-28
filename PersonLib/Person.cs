@@ -115,7 +115,7 @@ namespace PersonLib
         /// Проеобразование к правильному регистру с учетом возможности двойных имен
         /// </summary>
         /// <param name="value">Фамилия или имя</param>
-        /// <returns></returns>
+        /// <returns>Строка с преобразованным регистром</returns>
         private string ConvertToRightRegister(string value)
         {
             var symbols = new[] { "-", " " };
@@ -139,7 +139,7 @@ namespace PersonLib
         /// Проверка на пустую строку и английские или русские символы
         /// </summary>
         /// <param name="value"></param>
-        /// <returns></returns>
+        /// <returns>Исходная строка в случае отсутствия ошибок</returns>
         /// <exception cref="Exception"></exception>
         private string CheckNameSurname(string value)
         {
@@ -181,7 +181,7 @@ namespace PersonLib
         /// Проверка пола
         /// </summary>
         /// <param name="number">Номер пола</param>
-        /// <returns></returns>
+        /// <returns>Номер пола</returns>
         /// <exception cref="Exception"></exception>
         public static int CheckGender(int number)
         {
@@ -211,7 +211,7 @@ namespace PersonLib
         /// <summary>
         /// Получение случайной персоны
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Случайная персона</returns>
         public static Person GetRandomPerson()
         {
             string[] maleNames = new string[]
