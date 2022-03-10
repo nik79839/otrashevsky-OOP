@@ -6,27 +6,27 @@ namespace PersonLib
     public class Person
     {
         /// <summary>
-        /// Имя
+        /// Name
         /// </summary>
         private string _name;
 
         /// <summary>
-        /// Фамилия
+        /// Surname
         /// </summary>
         private string _surname;
 
         /// <summary>
-        /// Возраст
+        /// Age
         /// </summary>
         private int _age;
         
         /// <summary>
-        /// Пол человека
+        /// Gender of person
         /// </summary>
         private Gender _gender;
 
         /// <summary>
-        /// Пол человека
+        /// Gender of person
         /// </summary>
         public Gender Gender 
         {
@@ -39,7 +39,7 @@ namespace PersonLib
         }
 
         /// <summary>
-        /// Имя
+        /// Name
         /// </summary>
         public string Name 
         {
@@ -52,7 +52,7 @@ namespace PersonLib
         }
 
         /// <summary>
-        /// Возраст
+        /// Age
         /// </summary>
         public int Age
         {
@@ -65,7 +65,7 @@ namespace PersonLib
         }
 
         /// <summary>
-        /// Фамилия
+        /// Surname
         /// </summary>
         public string Surname 
         { 
@@ -79,22 +79,22 @@ namespace PersonLib
         
         //TODO: RSDN
         /// <summary>
-        /// Максимальный возраст
+        /// Maximum age
         /// </summary>
         private const int MaxAge = 120;
 
         /// <summary>
-        /// Минимальный возраст
+        /// Minimum age
         /// </summary>
         private const int MinAge = 0;
 
         /// <summary>
-        /// Конструктор класса
+        /// Constructor
         /// </summary>
-        /// <param name="name">Имя</param>
-        /// <param name="surname">Фамилия</param>
-        /// <param name="age">Возраст</param>
-        /// <param name="gender">Пол</param>
+        /// <param name="name">Name</param>
+        /// <param name="surname">Surname</param>
+        /// <param name="age">Age</param>
+        /// <param name="gender">Gender</param>
         public Person(string name, string surname, int age, Gender gender)
         {
             Name = name;
@@ -104,15 +104,15 @@ namespace PersonLib
         }
 
         /// <summary>
-        /// Конструктор по умолчанию
+        /// Default constructor
         /// </summary>
         public Person() : this("Nikita", "Otrashevsky", 23, Gender.Male) { }
 
         /// <summary>
-        /// Проеобразование к правильному регистру с учетом возможности двойных имен
+        /// Convert to right register
         /// </summary>
-        /// <param name="value">Фамилия или имя</param>
-        /// <returns>Строка с преобразованным регистром</returns>
+        /// <param name="value">Surname or name</param>
+        /// <returns>String with right register</returns>
         private string ConvertToRightRegister(string value)
         {
             var symbols = new[] { "-", " " };
@@ -133,10 +133,10 @@ namespace PersonLib
         }
 
         /// <summary>
-        /// Проверка на пустую строку и английские или русские символы
+        /// Checking for an empty string and English or Russian characters
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns>Исходная строка в случае отсутствия ошибок</returns>
+        /// <param name="value">Surname or name</param>
+        /// <returns>Source string in case of no errors</returns>
         /// <exception cref="Exception"></exception>
         private string CheckNameSurname(string value)
         {
@@ -144,11 +144,11 @@ namespace PersonLib
                 "[А-Яа-я])+))?$");
             if (value==string.Empty)
             {
-                throw new Exception("Строка ввода пустая");
+                throw new Exception("The input line is empty");
             }
             else if (!regex.IsMatch(value))
             {
-                throw new Exception("Должны быть только русские или английские символы");
+                throw new Exception("There should be only Russian or English characters");
             }
             else
             {
@@ -157,16 +157,16 @@ namespace PersonLib
         }
 
         /// <summary>
-        /// Проверка возраста
+        /// Age checking
         /// </summary>
-        /// <param name="age">Возраст</param>
-        /// <returns>Возраст</returns>
+        /// <param name="age">Age</param>
+        /// <returns>Age</returns>
         /// <exception cref="Exception"></exception>
         private int CheckAge(int age)
         {
             if (age < MinAge || age > MaxAge)
             {
-                throw new Exception($"Возраст должен быть в диапазоне от {MinAge} до {MaxAge}");
+                throw new Exception($"The age should be in the range from {MinAge} to {MaxAge}");
             }
             else
             {
@@ -175,27 +175,27 @@ namespace PersonLib
         }
 
         /// <summary>
-        /// Проверка пола
+        /// Gender checking
         /// </summary>
-        /// <param name="number">Номер пола</param>
-        /// <returns>Номер пола</returns>
+        /// <param name="number">Number of gender</param>
+        /// <returns>Number of gender</returns>
         /// <exception cref="Exception"></exception>
         public static int CheckGender(int number)
         {
             if (number < 0 || number > 1)
             {
-                throw new Exception("Введите 0 или 1, где 0 - М, 1 - Ж");
+                throw new Exception("Enter 0 or 1, where 0 - Мale, 1 - Female");
             }
             else
             {
                 return number;
             }
         }
-        
+
         /// <summary>
-        /// Вывод информации о персоне
+        /// Output of information about a person
         /// </summary>
-        public string Info => $"{Name} {Surname}, Возраст: {Age}, Пол: {Gender}";
+        public string Info => $"{Name} {Surname}, Age: {Age}, Gender: {Gender}";
 
 
         /// <summary>

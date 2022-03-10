@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 namespace PersonLib
 {
     /// <summary>
-    /// Класс списка персон
+    /// Class of list of persons
     /// </summary>
     public class PersonList
     {
         /// <summary>
-        /// Создание списка персон
+        /// Create list of the persons
         /// </summary>
         private Person[] _personList = new Person[0];
 
         /// <summary>
-        /// Добавление персоны в конец списка
+        /// Add person to end of the list
         /// </summary>
-        /// <param name="person">Персона</param>
+        /// <param name="person">Person</param>
         public void AddPerson(Person person)
         {
             Array.Resize(ref _personList, _personList.Length + 1);
@@ -27,9 +27,9 @@ namespace PersonLib
         }
 
         /// <summary>
-        /// Добавление нескольких персон
+        /// Add a few of persons
         /// </summary>
-        /// <param name="persons">Список персон</param>
+        /// <param name="persons">List of the person</param>
         public void AddPersons(Person[] persons)
         {
             foreach (Person person in persons)
@@ -39,10 +39,10 @@ namespace PersonLib
         }
 
         /// <summary>
-        /// Получение индекса персоны
+        /// Get index of the person
         /// </summary>
-        /// <param name="person">Персона</param>
-        /// <returns>Индекс персоны</returns>
+        /// <param name="person">Person</param>
+        /// <returns>Index of person</returns>
         /// <exception cref="Exception"></exception>
         public int GetIndexPerson(Person person)
         {
@@ -53,33 +53,33 @@ namespace PersonLib
                     return index;
                 }
             }
-            throw new Exception("Данного человека не существует");
+            throw new Exception("This person does not exist");
         }
 
         //TODO: RSDN
         /// <summary>
-        /// Удаление из списка персон по индексу
+        /// Removing persons from the list by index
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">Index</param>
         public void RemoveByIndex(int index)
         {
             _personList = _personList.Where((person, i) => i != index).ToArray();
         }
 
         /// <summary>
-        /// Удаление определенной персоны
+        /// Removing a certain person
         /// </summary>
-        /// <param name="person">Персона</param>
+        /// <param name="person">Person</param>
         public void DeletePersonByName(Person person)
         {
             RemoveByIndex(GetIndexPerson(person));
         }
 
         /// <summary>
-        /// Поиск персоны по индексу
+        /// Search person by index
         /// </summary>
-        /// <param name="index">Индекс</param>
-        /// <returns>Найденная персона</returns>
+        /// <param name="index">Index</param>
+        /// <returns>Found person</returns>
         /// <exception cref="Exception"></exception>
         public Person SearchByIndex(int index)
         {
@@ -89,17 +89,17 @@ namespace PersonLib
             }
             else
             {
-                throw new Exception("Данного индекса не существует");
+                throw new Exception("This index does not exist");
             }
         }
 
         /// <summary>
-        /// Возвращает количество персон в списке
+        /// Returns the number of persons in the list
         /// </summary>
         public int Length => _personList.Length;
 
         /// <summary>
-        /// Очистка всех персон
+        /// Clearing all persons
         /// </summary>
         public void Clear()
         {

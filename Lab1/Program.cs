@@ -35,56 +35,56 @@ namespace Lab1
 
             personList1.AddPersons(personAr1);
             personList2.AddPersons(personAr2);
-            Console.WriteLine("Список 1");
+            Console.WriteLine("List 1");
             Info(personList1);
-            Console.WriteLine("\nСписок 2");
+            Console.WriteLine("\nList 2");
             Info(personList2);
             Console.ReadKey();
             Console.WriteLine("");
 
             personList1.AddPerson(new Person("Doc", "Fier", 98, Gender.Male));
-            Console.WriteLine("Добавление новой персоны в список 1\nСписок 1");
+            Console.WriteLine("Adding a new person to the list 1\nList 1");
             Info(personList1);
             Console.ReadKey();
             Console.WriteLine("");
 
             personList2.AddPerson(personList1.SearchByIndex(1));
-            Console.WriteLine("Добавление новой персоны в список 2 из списка 1\nСписок 2");
+            Console.WriteLine("Adding a new person to List 2 from List 1\nList 2");
             Info(personList2);
             Console.ReadKey();
             Console.WriteLine("");
 
             personList1.RemoveByIndex(1);
-            Console.WriteLine("Удаление второй персоны из списка 1\nСписок 1");
+            Console.WriteLine("Removing the second person from the list 1\nList 1");
             Info(personList1);
-            Console.WriteLine("\nСписок 2");
+            Console.WriteLine("\nList 2");
             Info(personList2);
             Console.ReadKey();
             Console.WriteLine("");
 
             personList2.Clear();
-            Console.WriteLine("\nОчистка списка 2\nСписок 2");
+            Console.WriteLine("\nClearing the list 2\nList 2");
             Info(personList2);
             Console.ReadKey();
             Console.WriteLine("");
 
             personList2.AddPerson(AddPersonConsole());
-            Console.WriteLine("\nСписок 2");
+            Console.WriteLine("\nList 2");
             Info(personList2);
             Console.ReadKey();
             Console.WriteLine("");
 
             personList2.AddPerson(Person.GetRandomPerson());
-            Console.WriteLine("\nДобавление случайной персоны в Список 2");
+            Console.WriteLine("\nAdding a random person to the list 2");
             Info(personList2);
             Console.ReadKey();
             Console.WriteLine("");
         }
-        
+
         /// <summary>
-        /// Добавление персоны через консоль
+        /// Adding a person via the console
         /// </summary>
-        /// <returns>Персона</returns>
+        /// <returns>Person</returns>
         public static Person AddPersonConsole()
         {
             var defaultPerson = new Person();
@@ -92,20 +92,20 @@ namespace Lab1
             {
                 (
                     () => { defaultPerson.Name = Console.ReadLine(); },
-                    "Введите имя:"
+                    "Enter a name:"
                 ),
                 (
                     () =>
                     {
                         defaultPerson.Surname = Console.ReadLine();
                     },
-                    "Введите фамилию:"),
+                    "Enter a surname:"),
                 (
                     () =>
                     {
                         defaultPerson.Age = Convert.ToInt32(Console.ReadLine());
                     },
-                    "Введите возраст:"
+                    "Enter the age:"
                     ),
                 (
                     () =>
@@ -114,7 +114,7 @@ namespace Lab1
                         defaultPerson.Gender =
                             (Gender)Enum.GetValues(typeof(Gender)).GetValue(gender);
                     },
-                    "Введите пол, 0 - мужской, 1 - женский"
+                    "Enter the gender, 0 - male, 1 - female"
                     )
             };
 
@@ -124,12 +124,12 @@ namespace Lab1
             }
             return defaultPerson;
         }
-        
+
         /// <summary>
-        /// Обработчик ввода персоны через консоль
+        /// Person input handler via the console
         /// </summary>
-        /// <param name="action"></param>
-        /// <param name="inputMessage"></param>
+        /// <param name="action">Action</param>
+        /// <param name="inputMessage">Message</param>
         private static void ActionHandler(Action action, string inputMessage)
         {
             while (true)
@@ -143,7 +143,7 @@ namespace Lab1
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
-                    Console.WriteLine("Повторите ввод");
+                    Console.WriteLine("Repeat the input");
                 }
             }
         }
