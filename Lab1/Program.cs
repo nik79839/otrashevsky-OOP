@@ -9,10 +9,8 @@ namespace Lab1
 {
     internal class Program
     {
-        //TODO: RSDN
         public static void Main(string[] args)
         {
-            //TODO: Отработать вывод Unicode
             Console.OutputEncoding = System.Text.Encoding.Unicode;
             Console.InputEncoding = System.Text.Encoding.Unicode;
 
@@ -88,6 +86,7 @@ namespace Lab1
         public static Person AddPersonConsole()
         {
             var defaultPerson = new Person();
+            //TODO: ограничить ввод одним языком.
             var actionsTupleList = new List<(Action Action, string Message)>
             {
                 (
