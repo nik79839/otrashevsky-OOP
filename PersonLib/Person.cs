@@ -26,6 +26,11 @@ namespace PersonLib
         private Gender _gender;
 
         /// <summary>
+        /// Language
+        /// </summary>
+        private string _lang;
+
+        /// <summary>
         /// Gender of person
         /// </summary>
         public Gender Gender 
@@ -73,6 +78,7 @@ namespace PersonLib
             set 
             {
                 CheckNameSurname(value);
+                this._lang = null;
                 _surname = ConvertToRightRegister(value);
             }
         }
@@ -140,19 +146,25 @@ namespace PersonLib
         /// <exception cref="Exception"></exception>
         private string CheckNameSurname(string value)
         {
-            var regex = new Regex("^([A-Za-z]|[А-Яа-я])+(((-| )?([A-Za-z]|" +
-                "[А-Яа-я])+))?$");
+            Regex regexRus = new Regex("^([А-Яа-я])+(((-| )?([А-Яа-я])+))?$");
+            Regex regexEng = new Regex("^([A-Za-z])+(((-| )?([A-Za-z])+))?$");
             if (value==string.Empty)
             {
                 throw new Exception("The input line is empty");
             }
-            else if (!regex.IsMatch(value))
+            else if (regexRus.IsMatch(value) && (this._lang == null || this._lang == "Rus"))
             {
-                throw new Exception("There should be only Russian or English characters");
+                this._lang = "Rus";
+                return value;
+            }
+            else if (regexEng.IsMatch(value) && (this._lang == null || this._lang == "Eng"))
+            {
+                this._lang = "Eng";
+                return value;
             }
             else
             {
-                return value;
+                throw new Exception("There should be only Russian or only English characters");
             }
         }
 
