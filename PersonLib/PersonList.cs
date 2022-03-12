@@ -55,8 +55,7 @@ namespace PersonLib
             }
             throw new Exception("This person does not exist");
         }
-
-        //TODO: RSDN
+        
         /// <summary>
         /// Removing persons from the list by index
         /// </summary>
