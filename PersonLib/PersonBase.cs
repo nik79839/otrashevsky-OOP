@@ -206,7 +206,7 @@ namespace PersonLib
         /// <summary>
         /// Output of information about a base person
         /// </summary>
-        public string InfoPerson => $"{Name} {Surname}, Age: {Age}, Gender: {Gender}";
+        public string InfoPerson() => $"{Name} {Surname}, Age: {Age}, Gender: {Gender}";
 
         /// <summary>
         /// Output of information about a person 

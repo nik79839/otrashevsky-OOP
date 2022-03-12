@@ -12,6 +12,16 @@ namespace PersonLib
     public class Child : PersonBase
     {
         /// <summary>
+        /// Maximum age
+        /// </summary>
+        private const int MaxAge = 17;
+
+        /// <summary>
+        /// Minimum age
+        /// </summary>
+        private const int MinAge = 0;
+
+        /// <summary>
         /// Father
         /// </summary>
         public Adult Father { get; set; }
@@ -25,5 +35,37 @@ namespace PersonLib
         /// Name of school or kindergarten
         /// </summary>
         public string School { get; set; }
+        
+        /// <summary>
+        /// Info about child
+        /// </summary>
+        /// <returns>Info</returns>
+        public override string Info()
+        {
+            string personInfo = base.InfoPerson();
+            if (Father != null)
+            {
+                personInfo+=$", {Father.Name}";
+            }
+            if (Mother != null)
+            {
+                personInfo += $", {Mother.Name}";
+            }
+            if (Father==null && Mother!=null)
+            {
+                personInfo += $", Orphan";
+            }
+            if (School!=null)
+            {
+                personInfo += $", {School}";
+            }
+            return personInfo;
+        }
+
+
+        public static Child GetRandomChild()
+        {
+
+        }
     }
 }
