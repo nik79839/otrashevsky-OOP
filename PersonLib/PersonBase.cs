@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace PersonLib
 {
-    public class Person
+    public abstract class PersonBase
     {
         /// <summary>
         /// Name
@@ -100,7 +100,7 @@ namespace PersonLib
         /// <param name="surname">Surname</param>
         /// <param name="age">Age</param>
         /// <param name="gender">Gender</param>
-        public Person(string name, string surname, int age, Gender gender)
+        public PersonBase(string name, string surname, int age, Gender gender)
         {
             Name = name;
             Surname= surname;
@@ -111,7 +111,7 @@ namespace PersonLib
         /// <summary>
         /// Default constructor
         /// </summary>
-        public Person() : this("Nikita", "Otrashevsky", 23, Gender.Male) { }
+        public PersonBase() : this("Nikita", "Otrashevsky", 23, Gender.Male) { }
 
         /// <summary>
         /// Convert to right register
@@ -204,16 +204,22 @@ namespace PersonLib
         }
 
         /// <summary>
-        /// Output of information about a person
+        /// Output of information about a base person
         /// </summary>
-        public string Info => $"{Name} {Surname}, Age: {Age}, Gender: {Gender}";
+        public string InfoPerson => $"{Name} {Surname}, Age: {Age}, Gender: {Gender}";
+
+        /// <summary>
+        /// Output of information about a person 
+        /// </summary>
+        /// <returns></returns>
+        public abstract string Info();
 
 
         /// <summary>
         /// Получение случайной персоны
         /// </summary>
         /// <returns>Случайная персона</returns>
-        public static Person GetRandomPerson()
+        public static PersonBase GetRandomPerson()
         {
             string[] maleNames = new string[]
             {
@@ -247,11 +253,11 @@ namespace PersonLib
                     name = femaleNames[random.Next(femaleNames.Length)];
                     break;
                 default:
-                    return new Person("Default", "Person", 0, Gender.Male);
+                    return new PersonBase("Default", "Person", 0, Gender.Male);
             }
             string surname = allSurnames[random.Next(allSurnames.Length)];
             int age = random.Next(MinAge, MaxAge);
-            return new Person(name, surname, age, gender);
+            return new PersonBase(name, surname, age, gender);
         }
     }
 }

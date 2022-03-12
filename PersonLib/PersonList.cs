@@ -14,13 +14,13 @@ namespace PersonLib
         /// <summary>
         /// Create list of the persons
         /// </summary>
-        private Person[] _personList = new Person[0];
+        private PersonBase[] _personList = new PersonBase[0];
 
         /// <summary>
         /// Add person to end of the list
         /// </summary>
         /// <param name="person">Person</param>
-        public void AddPerson(Person person)
+        public void AddPerson(PersonBase person)
         {
             Array.Resize(ref _personList, _personList.Length + 1);
             _personList[_personList.Length-1] = person;
@@ -30,9 +30,9 @@ namespace PersonLib
         /// Add a few of persons
         /// </summary>
         /// <param name="persons">List of the person</param>
-        public void AddPersons(Person[] persons)
+        public void AddPersons(PersonBase[] persons)
         {
-            foreach (Person person in persons)
+            foreach (PersonBase person in persons)
             {
                 AddPerson(person);
             }
@@ -44,7 +44,7 @@ namespace PersonLib
         /// <param name="person">Person</param>
         /// <returns>Index of person</returns>
         /// <exception cref="Exception"></exception>
-        public int GetIndexPerson(Person person)
+        public int GetIndexPerson(PersonBase person)
         {
             for (int index = 0; index < _personList.Length; index++)
             {
@@ -69,7 +69,7 @@ namespace PersonLib
         /// Removing a certain person
         /// </summary>
         /// <param name="person">Person</param>
-        public void DeletePersonByName(Person person)
+        public void DeletePersonByName(PersonBase person)
         {
             RemoveByIndex(GetIndexPerson(person));
         }
@@ -80,7 +80,7 @@ namespace PersonLib
         /// <param name="index">Index</param>
         /// <returns>Found person</returns>
         /// <exception cref="Exception"></exception>
-        public Person SearchByIndex(int index)
+        public PersonBase SearchByIndex(int index)
         {
             if (index >= 0 && index < _personList.Length)
             {

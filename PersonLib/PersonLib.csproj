@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Person.cs" />
+    <Compile Include="Adult.cs" />
+    <Compile Include="Child.cs" />
+    <Compile Include="MaritalStatus.cs" />
+    <Compile Include="PersonBase.cs" />
     <Compile Include="Gender.cs" />
     <Compile Include="PersonList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

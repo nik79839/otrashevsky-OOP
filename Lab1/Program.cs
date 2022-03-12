@@ -17,18 +17,18 @@ namespace Lab1
             PersonList personList1 = new PersonList();
             PersonList personList2 = new PersonList();
 
-            Person[] personAr1 = new Person[]
+            PersonBase[] personAr1 = new PersonBase[]
             {
-                new Person("Nick", "afaf", 23, Gender.Male),
-                new Person("Stanislav", "pol", 28, Gender.Male),
-                new Person("Boolean", "fol", 100, Gender.Female),
+                new PersonBase("Nick", "afaf", 23, Gender.Male),
+                new PersonBase("Stanislav", "pol", 28, Gender.Male),
+                new PersonBase("Boolean", "fol", 100, Gender.Female),
             };
 
-            Person[] personAr2 = new Person[]
+            PersonBase[] personAr2 = new PersonBase[]
             {
-                new Person("gsg", "ewgwegw", 15, Gender.Male),
-                new Person("neko-rano", "Grri", 55, Gender.Male),
-                new Person("Bojack", "Horseman", 60, Gender.Male),
+                new PersonBase("gsg", "ewgwegw", 15, Gender.Male),
+                new PersonBase("neko-rano", "Grri", 55, Gender.Male),
+                new PersonBase("Bojack", "Horseman", 60, Gender.Male),
             };
 
             personList1.AddPersons(personAr1);
@@ -40,7 +40,7 @@ namespace Lab1
             Console.ReadKey();
             Console.WriteLine("");
 
-            personList1.AddPerson(new Person("Doc", "Fier", 98, Gender.Male));
+            personList1.AddPerson(new PersonBase("Doc", "Fier", 98, Gender.Male));
             Console.WriteLine("Adding a new person to the list 1\nList 1");
             Info(personList1);
             Console.ReadKey();
@@ -72,7 +72,7 @@ namespace Lab1
             Console.ReadKey();
             Console.WriteLine("");
 
-            personList2.AddPerson(Person.GetRandomPerson());
+            personList2.AddPerson(PersonBase.GetRandomPerson());
             Console.WriteLine("\nAdding a random person to the list 2");
             Info(personList2);
             Console.ReadKey();
@@ -83,9 +83,9 @@ namespace Lab1
         /// Adding a person via the console
         /// </summary>
         /// <returns>Person</returns>
-        public static Person AddPersonConsole()
+        public static PersonBase AddPersonConsole()
         {
-            var defaultPerson = new Person();
+            var defaultPerson = new PersonBase();
             //TODO: ограничить ввод одним языком.
             var actionsTupleList = new List<(Action Action, string Message)>
             {
@@ -155,7 +155,7 @@ namespace Lab1
         {
             for (int i = 0; i < personList.Length; i++)
             {
-                Console.WriteLine(personList.SearchByIndex(i).Info);
+                Console.WriteLine(personList.SearchByIndex(i).InfoPerson);
             }
         }
     }
