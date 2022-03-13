@@ -161,5 +161,14 @@ namespace PersonLib
             string school = schools[random.Next(schools.Length)];
             return new Child(school,name, surname, age, gender);
         }
+
+        /// <summary>
+        /// Action for child
+        /// </summary>
+        /// <returns>String</returns>
+        public override string SpecialAction()
+        {
+            return "Doing special action for child...";
+        }
     }
 }

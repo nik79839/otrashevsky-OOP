@@ -183,5 +183,14 @@ namespace PersonLib
             string job= workPlaces[random.Next(workPlaces.Length)];
             return new Adult(passport, job, maritalStatus, name, surname, age, gender);
         }
+
+        /// <summary>
+        /// Action for adult
+        /// </summary>
+        /// <returns>String</returns>
+        public override string SpecialAction()
+        {
+            return "Doing special action for adult...";
+        }
     }
 }

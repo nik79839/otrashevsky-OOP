@@ -32,7 +32,12 @@ namespace Lab2
                 adult1,child1,adult2,child2,adult3,adultRandom,childRandom
             };
             personList1.AddPersons(personArr);
+            Console.WriteLine("\nList");
             Info(personList1);
+
+            PersonBase fourthPerson = personList1.SearchByIndex(4);
+            Console.WriteLine($"\nFourth person: {fourthPerson.Info()}, \nType: {fourthPerson.GetType()}");
+            Console.WriteLine(fourthPerson.SpecialAction());
         }
 
         static void Info(PersonList personList)
