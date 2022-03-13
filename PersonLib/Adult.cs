@@ -9,14 +9,24 @@ namespace PersonLib
     public class Adult : PersonBase
     {
         /// <summary>
+        /// Minimum age
+        /// </summary>
+        private const int _minAge = 18;
+
+        /// <summary>
         /// Maximum age
         /// </summary>
-        private const int MaxAge = 120;
+        private const int _maxAge = 120;
+
+        /// <summary>
+        /// Maximum age
+        /// </summary>
+        protected override int MaxAge { get; } = _maxAge;
 
         /// <summary>
         /// Minimum age
         /// </summary>
-        private const int MinAge = 18;
+        protected override int MinAge { get; } = _minAge;
         /// <summary>
         /// Passport data
         /// </summary>
@@ -167,7 +177,7 @@ namespace PersonLib
                     break;
             }
             string surname = allSurnames[random.Next(allSurnames.Length)];
-            int age = random.Next(MinAge, MaxAge);
+            int age = random.Next(_minAge, _maxAge);
             MaritalStatus maritalStatus = (MaritalStatus)random.Next(0, 2);
             string passport=random.Next(1000, 9999).ToString();
             string job= workPlaces[random.Next(workPlaces.Length)];

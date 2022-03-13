@@ -86,12 +86,12 @@ namespace PersonLib
         /// <summary>
         /// Maximum age
         /// </summary>
-        private const int MaxAge = 120;
+        protected abstract int MaxAge { get; }
 
         /// <summary>
         /// Minimum age
         /// </summary>
-        private const int MinAge = 0;
+        protected abstract int MinAge { get; }
 
         /// <summary>
         /// Constructor
@@ -173,7 +173,7 @@ namespace PersonLib
         /// <param name="age">Age</param>
         /// <returns>Age</returns>
         /// <exception cref="Exception"></exception>
-        private int CheckAge(int age)
+        protected int CheckAge(int age)
         {
             if (age < MinAge || age > MaxAge)
             {
@@ -191,7 +191,7 @@ namespace PersonLib
         /// <param name="number">Number of gender</param>
         /// <returns>Number of gender</returns>
         /// <exception cref="Exception"></exception>
-        public static int CheckGender(int number)
+        private static int CheckGender(int number)
         {
             if (number < 0 || number > 1)
             {
@@ -214,50 +214,5 @@ namespace PersonLib
         /// <returns></returns>
         public abstract string Info();
 
-
-        /// <summary>
-        /// Получение случайной персоны
-        /// </summary>
-        /// <returns>Случайная персона</returns>
-        public static PersonBase GetRandomPerson()
-        {
-            string[] maleNames = new string[]
-            {
-                "John", "Carl", "Rick", "Mattew",
-                "Nicholas", "Robert", "Samuel",
-                "Stan", "Kenny", "Severus", "Jake"
-            };
-
-            string[] femaleNames = new string[]
-            {
-                "Lyla", "Samanta", "Kate", "Kira",
-                "Amelia", "Julia", "Anastasia",
-                "Sindy", "Luna", "Violet", "Anna"
-            };
-
-            string[] allSurnames = new string[]
-            {
-                "Green", "Gray", "Black", "Orange",
-                "Weasley", "Dursley", "Riddle",
-                "Krum", "White", "Lovegood", "Red"
-            };
-            Random random = new Random();
-            string name;
-            Gender gender = (Gender)random.Next(0, 2);
-            switch (gender)
-            {
-                case Gender.Male:
-                    name = maleNames[random.Next(maleNames.Length)];
-                    break;
-                case Gender.Female:
-                    name = femaleNames[random.Next(femaleNames.Length)];
-                    break;
-                default:
-                    return new PersonBase("Default", "Person", 0, Gender.Male);
-            }
-            string surname = allSurnames[random.Next(allSurnames.Length)];
-            int age = random.Next(MinAge, MaxAge);
-            return new PersonBase(name, surname, age, gender);
-        }
     }
 }
