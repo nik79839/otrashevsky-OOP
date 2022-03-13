@@ -100,19 +100,19 @@ namespace PersonLib
             string personInfo = base.InfoPerson();
             if (Father != null)
             {
-                personInfo+=$", {Father.Name}";
+                personInfo+=$", Father: {Father.Name} {Father.Surname}";
             }
             if (Mother != null)
             {
-                personInfo += $", {Mother.Name}";
+                personInfo += $", Mother: {Mother.Name} {Mother.Surname}";
             }
-            if (Father==null && Mother!=null)
+            if (Father==null && Mother==null)
             {
                 personInfo += $", Orphan";
             }
             if (School!=null)
             {
-                personInfo += $", {School}";
+                personInfo += $", School: {School}";
             }
             return personInfo;
         }

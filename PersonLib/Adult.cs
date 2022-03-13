@@ -118,14 +118,14 @@ namespace PersonLib
         public override string Info()
         {
             string personInfo = $"{base.InfoPerson()}, Passport: {Passport}, " +
-                $"Marital status: {MaritalStatus}, Place of work: {Job}";
+                $"Marital status: {MaritalStatus}";
             if (MaritalStatus == MaritalStatus.Married)
             {
-                personInfo += $"\nSpouse: {Spouse.Name} {Spouse.Surname}";
+                personInfo += $", Spouse: {Spouse.Name} {Spouse.Surname}";
             }
-            if (Job == null)
+            if (Job == null || Job==String.Empty)
             {
-                personInfo += "Unemployed";
+                personInfo += ", Unemployed";
             }
             else
             {
@@ -178,7 +178,7 @@ namespace PersonLib
             }
             string surname = allSurnames[random.Next(allSurnames.Length)];
             int age = random.Next(_minAge, _maxAge);
-            MaritalStatus maritalStatus = (MaritalStatus)random.Next(0, 2);
+            MaritalStatus maritalStatus = MaritalStatus.Single;
             string passport=random.Next(1000, 9999).ToString();
             string job= workPlaces[random.Next(workPlaces.Length)];
             return new Adult(passport, job, maritalStatus, name, surname, age, gender);
