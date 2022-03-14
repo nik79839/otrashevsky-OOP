@@ -70,7 +70,14 @@ namespace PersonLib
             }
             set
             {
-                _spouse = value;
+                if (MaritalStatus == MaritalStatus.Married)
+                {
+                    _spouse = value;
+                }
+                else
+                {
+                    throw new Exception("Marital status is incorrect");
+                }
             }
         }
 
@@ -164,23 +171,23 @@ namespace PersonLib
                 "School","Hospital","Home",
                 "Office","Sport club"
             };
-            Random random = new Random();
+            Random random1 = new Random();
             string name="";
-            Gender gender = (Gender)random.Next(0, 2);
+            Gender gender = (Gender)random1.Next(0, 2);
             switch (gender)
             {
                 case Gender.Male:
-                    name = maleNames[random.Next(maleNames.Length)];
+                    name = maleNames[random1.Next(maleNames.Length)];
                     break;
                 case Gender.Female:
-                    name = femaleNames[random.Next(femaleNames.Length)];
+                    name = femaleNames[random1.Next(femaleNames.Length)];
                     break;
             }
-            string surname = allSurnames[random.Next(allSurnames.Length)];
-            int age = random.Next(_minAge, _maxAge);
+            string surname = allSurnames[random1.Next(allSurnames.Length)];
+            int age = random1.Next(_minAge, _maxAge);
             MaritalStatus maritalStatus = MaritalStatus.Single;
-            string passport=random.Next(1000, 9999).ToString();
-            string job= workPlaces[random.Next(workPlaces.Length)];
+            string passport=random1.Next(1000, 9999).ToString();
+            string job= workPlaces[random1.Next(workPlaces.Length)];
             return new Adult(passport, job, maritalStatus, name, surname, age, gender);
         }
 

@@ -69,8 +69,8 @@ namespace PersonLib
         /// <param name="surname">surname</param>
         /// <param name="age">age</param>
         /// <param name="gender">gender</param>
-        public Child(Adult mother, string school, string name, string surname, int age, Gender gender)
-            : this(school, name, surname, age, gender)
+        public Child(Adult mother, string school, string name, string surname,
+            int age, Gender gender) : this(school, name, surname, age, gender)
         {
             Mother = mother;
         }
@@ -85,7 +85,8 @@ namespace PersonLib
         /// <param name="surname">surname</param>
         /// <param name="age">age</param>
         /// <param name="gender">gender</param>
-        public Child(Adult father,Adult mother, string school, string name, string surname, int age, Gender gender)
+        public Child(Adult father,Adult mother, string school, string name,
+            string surname, int age, Gender gender)
             : this(mother,school, name, surname, age, gender)
         {
             Father = father;
@@ -116,8 +117,11 @@ namespace PersonLib
             }
             return personInfo;
         }
-
-
+        
+        /// <summary>
+        /// Get random child
+        /// </summary>
+        /// <returns>Random child</returns>
         public static Child GetRandomChild()
         {
             string[] maleNames = new string[]
