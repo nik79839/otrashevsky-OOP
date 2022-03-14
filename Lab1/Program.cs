@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PersonLib;
 
 namespace Lab1
@@ -86,7 +83,6 @@ namespace Lab1
         public static Person AddPersonConsole()
         {
             var defaultPerson = new Person();
-            //TODO: ограничить ввод одним языком.
             var actionsTupleList = new List<(Action Action, string Message)>
             {
                 (
