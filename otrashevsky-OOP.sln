@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab1", "Lab1\Lab1.csproj", "{79B93229-F7B7-49B9-9FF5-94F3B3C3CA39}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonLib", "PersonLib\PersonLib.csproj", "{0955E8F6-BDE2-4665-8CE8-12864C11620F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab2", "Lab2\Lab2.csproj", "{EC88D421-92DD-4ED1-8FFD-01333CB6AB36}"
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{79B93229-F7B7-49B9-9FF5-94F3B3C3CA39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79B93229-F7B7-49B9-9FF5-94F3B3C3CA39}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{79B93229-F7B7-49B9-9FF5-94F3B3C3CA39}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{79B93229-F7B7-49B9-9FF5-94F3B3C3CA39}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0955E8F6-BDE2-4665-8CE8-12864C11620F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0955E8F6-BDE2-4665-8CE8-12864C11620F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0955E8F6-BDE2-4665-8CE8-12864C11620F}.Release|Any CPU.ActiveCfg = Release|Any CPU
