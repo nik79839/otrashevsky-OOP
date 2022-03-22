@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PersonLib
 {
+    //TODO: XML
     public class Adult : PersonBase
     {
         /// <summary>
@@ -52,22 +49,13 @@ namespace PersonLib
         /// </summary>
         public string Passport
         {
-            get
-            {
-                return _passport;
-            }
-            set
-            {
-                _passport = value;
-            }
+            get => _passport;
+            set => _passport = value;
         }
 
         public Adult Spouse
         {
-            get
-            {
-                return _spouse;
-            }
+            get => _spouse;
             set
             {
                 if (MaritalStatus == MaritalStatus.Married)
@@ -132,7 +120,7 @@ namespace PersonLib
             {
                 personInfo += $", Spouse: {Spouse.Name} {Spouse.Surname}";
             }
-            if (Job == null || Job==String.Empty)
+            if (string.IsNullOrEmpty(Job))
             {
                 personInfo += ", Unemployed";
             }
