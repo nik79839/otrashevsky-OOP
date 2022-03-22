@@ -3,6 +3,9 @@
 namespace PersonLib
 {
     //TODO: XML
+    /// <summary>
+    /// Class adult
+    /// </summary>
     public class Adult : PersonBase
     {
         /// <summary>

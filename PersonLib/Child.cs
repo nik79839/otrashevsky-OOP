@@ -22,6 +22,16 @@ namespace PersonLib
         private const int _maxAge = 17;
 
         /// <summary>
+        /// Mother of child
+        /// </summary>
+        private Adult _mother;
+
+        /// <summary>
+        /// Father of child
+        /// </summary>
+        private Adult _father;
+
+        /// <summary>
         /// Maximum age
         /// </summary>
         protected override int MaxAge { get; } = _maxAge;
@@ -34,12 +44,20 @@ namespace PersonLib
         /// <summary>
         /// Father
         /// </summary>
-        public Adult Father { get; set; }
+        public Adult Father
+        {
+            get => _father;
+            set => GenderCheck(value, Gender.Male);
+        }
 
         /// <summary>
         /// Mother
         /// </summary>
-        public Adult Mother { get; set; }
+        public Adult Mother 
+        { 
+            get => _mother; 
+            set => GenderCheck(value, Gender.Female);
+        }
 
         /// <summary>
         /// Name of school or kindergarten
@@ -85,9 +103,9 @@ namespace PersonLib
         /// <param name="surname">surname</param>
         /// <param name="age">age</param>
         /// <param name="gender">gender</param>
-        public Child(Adult father,Adult mother, string school, string name,
+        public Child(Adult father, Adult mother, string school, string name,
             string surname, int age, Gender gender)
-            : this(mother,school, name, surname, age, gender)
+            : this(mother, school, name, surname, age, gender)
         {
             Father = father;
         }
@@ -101,23 +119,42 @@ namespace PersonLib
             string personInfo = base.InfoPerson();
             if (Father != null)
             {
-                personInfo+=$", Father: {Father.Name} {Father.Surname}";
+                personInfo += $", Father: {Father.Name} {Father.Surname}";
             }
             if (Mother != null)
             {
                 personInfo += $", Mother: {Mother.Name} {Mother.Surname}";
             }
-            if (Father==null && Mother==null)
+            if (Father == null && Mother == null)
             {
                 personInfo += $", Orphan";
             }
-            if (School!=null)
+            if (School != null)
             {
                 personInfo += $", School: {School}";
             }
             return personInfo;
         }
-        
+
+        /// <summary>
+        /// Check gender of parents
+        /// </summary>
+        /// <param name="adult">adult</param>
+        /// <param name="gender">gender of adult</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public Adult GenderCheck(Adult adult, Gender gender)
+        {
+            if (adult == null) return adult;
+
+            if (adult.Gender != gender)
+            {
+                throw new ArgumentException
+                    ("This parent must has another gender");
+            }
+            return adult;
+        }
+
         /// <summary>
         /// Get random child
         /// </summary>
@@ -162,7 +199,7 @@ namespace PersonLib
             string surname = allSurnames[random.Next(allSurnames.Length)];
             int age = random.Next(_minAge, _maxAge);
             string school = schools[random.Next(schools.Length)];
-            return new Child(school,name, surname, age, gender);
+            return new Child(school, name, surname, age, gender);
         }
 
         /// <summary>

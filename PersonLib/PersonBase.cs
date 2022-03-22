@@ -4,6 +4,9 @@ using System.Text.RegularExpressions;
 namespace PersonLib
 {
     //TODO: XML
+    /// <summary>
+    /// Class person
+    /// </summary>
     public abstract class PersonBase
     {
         /// <summary>
@@ -20,11 +23,6 @@ namespace PersonLib
         /// Age
         /// </summary>
         private int _age;
-        
-        /// <summary>
-        /// Gender of person
-        /// </summary>
-        private Gender _gender;
 
         /// <summary>
         /// Language
@@ -34,15 +32,7 @@ namespace PersonLib
         /// <summary>
         /// Gender of person
         /// </summary>
-        public Gender Gender 
-        {
-            get => _gender;
-            set
-            {
-                CheckGender((int)value);
-                _gender = value;
-            }
-        }
+        public Gender Gender { get; set; }
 
         /// <summary>
         /// Name
@@ -102,7 +92,7 @@ namespace PersonLib
         /// <param name="surname">Surname</param>
         /// <param name="age">Age</param>
         /// <param name="gender">Gender</param>
-        public PersonBase(string name, string surname, int age, Gender gender)
+        protected PersonBase(string name, string surname, int age, Gender gender)
         {
             Name = name;
             Surname= surname;
@@ -114,7 +104,7 @@ namespace PersonLib
         /// <summary>
         /// Default constructor
         /// </summary>
-        public PersonBase() : this("Nikita", "Otrashevsky", 23, Gender.Male) { }
+        protected PersonBase() : this("Nikita", "Otrashevsky", 23, Gender.Male) { }
 
         /// <summary>
         /// Convert to right register
@@ -185,25 +175,6 @@ namespace PersonLib
             else
             {
                 return age;
-            }
-        }
-
-        //TODO:
-        /// <summary>
-        /// Gender checking
-        /// </summary>
-        /// <param name="number">Number of gender</param>
-        /// <returns>Number of gender</returns>
-        /// <exception cref="Exception"></exception>
-        private static int CheckGender(int number)
-        {
-            if (number < 0 || number > 1)
-            {
-                throw new Exception("Enter 0 or 1, where 0 - Мale, 1 - Female");
-            }
-            else
-            {
-                return number;
             }
         }
 
