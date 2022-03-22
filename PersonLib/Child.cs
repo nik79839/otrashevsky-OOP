@@ -122,7 +122,7 @@ namespace PersonLib
         /// Get random child
         /// </summary>
         /// <returns>Random child</returns>
-        public static Child GetRandomChild()
+        public static Child GetRandomChild(Random random)
         {
             string[] maleNames = new string[]
             {
@@ -148,7 +148,6 @@ namespace PersonLib
                 "School №4","School №5","School №6",
                 "School №7","School №8"
             };
-            Random random = new Random();
             string name = "";
             Gender gender = (Gender)random.Next(0, 2);
             switch (gender)
@@ -170,7 +169,7 @@ namespace PersonLib
         /// Action for child
         /// </summary>
         /// <returns>String</returns>
-        public override string SpecialAction()
+        public string SpecialActionForChild()
         {
             return "Doing special action for child...";
         }

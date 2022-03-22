@@ -213,12 +213,5 @@ namespace PersonLib
         /// </summary>
         /// <returns></returns>
         public abstract string Info();
-
-        /// <summary>
-        /// Special action
-        /// </summary>
-        /// <returns></returns>
-        public abstract string SpecialAction();
-
     }
 }

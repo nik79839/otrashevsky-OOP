@@ -73,6 +73,8 @@ namespace PersonLib
                 if (MaritalStatus == MaritalStatus.Married)
                 {
                     _spouse = value;
+                    value._spouse = this;
+                    value.MaritalStatus = MaritalStatus.Married;
                 }
                 else
                 {
@@ -145,7 +147,7 @@ namespace PersonLib
         /// Get random adult
         /// </summary>
         /// <returns></returns>
-        public static Adult GetRandomAdult()
+        public static Adult GetRandomAdult(Random random)
         {
             string[] maleNames = new string[]
             {
@@ -170,24 +172,23 @@ namespace PersonLib
                 "Data center","Shop","Warehouse",
                 "School","Hospital","Home",
                 "Office","Sport club"
-            };
-            Random random1 = new Random();
+            };;
             string name="";
-            Gender gender = (Gender)random1.Next(0, 2);
+            Gender gender = (Gender)random.Next(0, 2);
             switch (gender)
             {
                 case Gender.Male:
-                    name = maleNames[random1.Next(maleNames.Length)];
+                    name = maleNames[random.Next(maleNames.Length)];
                     break;
                 case Gender.Female:
-                    name = femaleNames[random1.Next(femaleNames.Length)];
+                    name = femaleNames[random.Next(femaleNames.Length)];
                     break;
             }
-            string surname = allSurnames[random1.Next(allSurnames.Length)];
-            int age = random1.Next(_minAge, _maxAge);
+            string surname = allSurnames[random.Next(allSurnames.Length)];
+            int age = random.Next(_minAge, _maxAge);
             MaritalStatus maritalStatus = MaritalStatus.Single;
-            string passport=random1.Next(1000, 9999).ToString();
-            string job= workPlaces[random1.Next(workPlaces.Length)];
+            string passport=random.Next(1000, 9999).ToString();
+            string job= workPlaces[random.Next(workPlaces.Length)];
             return new Adult(passport, job, maritalStatus, name, surname, age, gender);
         }
 
@@ -195,7 +196,7 @@ namespace PersonLib
         /// Action for adult
         /// </summary>
         /// <returns>String</returns>
-        public override string SpecialAction()
+        public string SpecialActionForAdult()
         {
             return "Doing special action for adult...";
         }
