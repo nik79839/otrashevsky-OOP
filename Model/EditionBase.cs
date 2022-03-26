@@ -9,7 +9,7 @@ namespace Model
     /// <summary>
     /// Edition (book, collection, magazine, article)
     /// </summary>
-    public class EditionBase
+    public abstract class EditionBase
     {
         /// <summary>
         /// Name of edition
@@ -45,8 +45,8 @@ namespace Model
         /// </summary>
         public string Place
         {
-            get => _year;
-            set => _year = value;
+            get => _place;
+            set => _place = value;
         }
 
         /// <summary>
@@ -54,8 +54,8 @@ namespace Model
         /// </summary>
         public string Year
         {
-            get => _pageCount;
-            set => _pageCount = value;
+            get => _year;
+            set => _year = value;
         }
 
         /// <summary>
@@ -67,8 +67,11 @@ namespace Model
             set => _pageCount = value;
         }
 
-
-        //public abstract string Info { get; }
+        /// <summary>
+        /// Info about edition
+        /// </summary>
+        /// <returns></returns>
+        public abstract string Info();
 
     }
 }
