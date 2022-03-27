@@ -27,7 +27,7 @@ namespace Model
 		public string Publisher
 		{
 			get => _publisher;
-			set => _publisher = value;
+			set => _publisher = CheckEmptyOrNull(value);
 		}
 
 		/// <summary>
@@ -36,7 +36,7 @@ namespace Model
 		public string NameOfConference
 		{
 			get => _nameOfConference;
-			set => _nameOfConference = value;
+			set => _nameOfConference = CheckEmptyOrNull(value);
 		}
 
 		/// <summary>
@@ -50,13 +50,10 @@ namespace Model
 		/// <param name="pageCount">page count</param>
 		public Collection(string name, string nameOfConference, string place,
 			string publisher, string year, string pageCount)
+			: base(name, place, year, pageCount)
 		{
-			Name = name;
 			NameOfConference = nameOfConference;
-			Place = place;
 			Publisher = publisher;
-			Year = year;
-			PageCount = pageCount;
 		}
 
         public override string Info()

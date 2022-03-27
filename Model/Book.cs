@@ -32,7 +32,11 @@ namespace Model
         public string MainAuthor
         {
             get => _mainAuthor;
-            set => _mainAuthor = value;
+            set
+            {
+                CheckEmptyAndLanguage(value);
+                _mainAuthor = value;
+            }
         }
 
         /// <summary>
@@ -41,7 +45,11 @@ namespace Model
         public string Publisher
         {
             get => _publisher;
-            set => _publisher = value;
+            set
+            {
+                CheckEmptyOrNull(value);
+                _publisher = value;
+            }
         }
 
         /// <summary>
@@ -50,7 +58,11 @@ namespace Model
         public string Type
         {
             get => _type;
-            set => _type = value;
+            set
+            {
+                CheckEmptyAndLanguage(value);
+                _type = value;
+            }
         }
 
         /// <summary>
@@ -65,14 +77,11 @@ namespace Model
         /// <param name="pageCount">count of pages</param>
         public Book(string mainAuthor, string name, string type, string place,
             string publisher, string year, string pageCount)
+            : base(name, place, year, pageCount)
         {
             MainAuthor = mainAuthor;
-            Name = name;
             Type = type;
-            Place = place;
             Publisher = publisher;
-            Year = year;
-            PageCount = pageCount;
         }
 
         public override string Info()

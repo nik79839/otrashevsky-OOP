@@ -22,7 +22,7 @@ namespace Model
 		public string Author
 		{
 			get => _author;
-			set => _author = value;
+			set => _author = CheckEmptyAndLanguage(value);
 		}
 
 		/// <summary>
@@ -36,7 +36,7 @@ namespace Model
 		public string Specialization
 		{
 			get => _specialization;
-			set => _specialization = value;
+			set => _specialization = CheckEmptyOrNull(value);
 		}
 
 		/// <summary>
@@ -55,7 +55,7 @@ namespace Model
 		public string Type
 		{
 			get => _type;
-			set => _type = value;
+			set => _type = CheckEmptyAndLanguage(value);
 		}
 
 		/// <summary>
@@ -64,7 +64,7 @@ namespace Model
 		public string University
 		{
 			get => _university;
-			set => _university = value;
+			set => _university = CheckEmptyOrNull(value);
 		}
 
 		/// <summary>
@@ -80,15 +80,12 @@ namespace Model
 		/// <param name="pageLimits">Количество страниц</param>
 		public Thesis(string author, string name, string type, string specialization, string place,
 			string university, string year, string pageCount)
+			: base(name, place, year, pageCount)
 		{
 			Author = author;
-			Name = name;
 			Type = type;
 			Specialization = specialization;
-			Place = place;
 			University = university;
-			Year = year;
-			PageCount = pageCount;
 		}
 
         public override string Info()

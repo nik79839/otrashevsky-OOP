@@ -32,7 +32,7 @@ namespace Model
         public string Founder
         {
             get => _founder;
-            set => _founder = value;
+            set => _founder = CheckEmptyOrNull(value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Model
         public string Type
         {
             get => _type;
-            set => _type = value;
+            set => _type = CheckEmptyAndLanguage(value);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Model
         public string MainEditor
         {
             get => _mainEditor;
-            set => _mainEditor = value;
+            set => _mainEditor = CheckEmptyAndLanguage(value);
         }
 
         /// <summary>
@@ -65,14 +65,11 @@ namespace Model
 		/// <param name="pageCount">count of pages</param>
 		public Magazine(string name, string type, string founder, string place,
             string mainEditor, string year, string pageCount)
+            :base(name, place, year, pageCount)
         {
-            Name = name;
             Type = type;
             Founder = founder;
-            Place = place;
             MainEditor = mainEditor;
-            Year = year;
-            PageCount = pageCount;
         }
 
         /// <summary>
