@@ -155,12 +155,12 @@ namespace Model
             const int minimumYear = 0;
             if (!Regex.IsMatch(value, pattern))
             {
-                throw new ArgumentException($"Year must only contain numbers!");
+                throw new ArgumentException($"Year must only contain numbers");
             }           
             if (Convert.ToInt32(value) > maximumYear || Convert.ToInt32(value) < minimumYear)
             {
                 throw new ArgumentException($"Year should be " +
-                    $"between {minimumYear} and {maximumYear} !");
+                    $"between {minimumYear} and {maximumYear}");
             }
             return value;
         }
@@ -173,18 +173,18 @@ namespace Model
         /// <exception cref="ArgumentException"></exception>
         private string CheckPageCount(string value)
         {
-            CheckYear(value);
+            CheckEmptyOrNull(value);
             string pattern = @"^[0-9]*$";
             if (!Regex.IsMatch(value, pattern))
             {
-                throw new ArgumentException($"Count of page must only contain numbers!");
+                throw new ArgumentException($"Count of page must only contain numbers");
             }
             const int maximumPageLimits = 100000;
             const int minimumPageLimits = 0;
             if (Convert.ToInt32(value) > maximumPageLimits || Convert.ToInt32(value) < minimumPageLimits)
             {
                 throw new ArgumentException($"Count of page should be " +
-                    $"between {minimumPageLimits} and {maximumPageLimits} !");
+                    $"between {minimumPageLimits} and {maximumPageLimits}");
             }
             return value;
         }
