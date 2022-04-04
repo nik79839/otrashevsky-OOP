@@ -22,7 +22,7 @@ namespace Lab2
                 "Green", 26, Gender.Female);
             Adult adult2 = new Adult(adult1,"2000", "School", MaritalStatus.Married,
                 "Argg", "Green", 24, Gender.Male);
-            Child child1 = new Child(adult1, adult2, "School №2", "Tom","Green",
+            Child child1 = new Child(adult2, adult1, "School №2", "Tom","Green",
                 10, Gender.Male);
             PersonBase[] personArr = new PersonBase[] { adult1, adult2, child1 };
             personList1.AddPersons(personArr);
