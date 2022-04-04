@@ -2,7 +2,6 @@
 
 namespace PersonLib
 {
-    //TODO: XML
     /// <summary>
     /// Class adult
     /// </summary>

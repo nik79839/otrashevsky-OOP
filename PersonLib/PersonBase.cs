@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 
 namespace PersonLib
 {
-    //TODO: XML
     /// <summary>
     /// Class person
     /// </summary>
@@ -83,8 +82,7 @@ namespace PersonLib
         /// Minimum age
         /// </summary>
         protected abstract int MinAge { get; }
-
-        //TODO:
+        
         /// <summary>
         /// Constructor
         /// </summary>
@@ -99,8 +97,7 @@ namespace PersonLib
             Age = age;
             Gender = gender;           
         }
-
-        //TODO:
+        
         /// <summary>
         /// Default constructor
         /// </summary>

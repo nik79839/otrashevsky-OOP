@@ -17,7 +17,6 @@ namespace Lab2
             Random random= new Random();
             PersonList personList1 = new PersonList();
             Console.WriteLine("Adding 7 person to list");
-            //TODO: RSDN
             Adult adult1 = new Adult("1000", "Hospital", MaritalStatus.Married, "Hanna",
                 "Green", 26, Gender.Female);
             Adult adult2 = new Adult(adult1,"2000", "School", MaritalStatus.Married,
@@ -52,6 +51,8 @@ namespace Lab2
                     Console.WriteLine(child.SpecialActionForChild());
                     break;
             }
+
+            Console.ReadLine();
         }
         /// <summary>
         /// Input information about all persons
