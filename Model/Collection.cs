@@ -56,6 +56,7 @@ namespace Model
 			Publisher = publisher;
 		}
 
+		//TODO: XML
         public override string Info()
         {
             return $"{Name}: {NameOfConference}. - {Place}: {Publisher}," +

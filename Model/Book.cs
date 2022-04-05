@@ -84,6 +84,7 @@ namespace Model
             Publisher = publisher;
         }
 
+        //TODO: XML
         public override string Info()
         {
             string mainAuthor = MainAuthor == ""

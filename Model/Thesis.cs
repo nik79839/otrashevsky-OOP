@@ -77,6 +77,7 @@ namespace Model
 		/// <param name="place">Место издания</param>
 		/// <param name="university">Университет</param>
 		/// <param name="year">Год издания</param>
+		/// //TODO: XML
 		/// <param name="pageLimits">Количество страниц</param>
 		public Thesis(string author, string name, string type, string specialization, string place,
 			string university, string year, string pageCount)
@@ -87,6 +88,8 @@ namespace Model
 			Specialization = specialization;
 			University = university;
 		}
+
+		//TODO: XML
 
         public override string Info()
         {

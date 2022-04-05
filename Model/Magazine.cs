@@ -72,6 +72,7 @@ namespace Model
             MainEditor = mainEditor;
         }
 
+        //TODO: XML
         /// <summary>
         /// Information
         /// </summary>
