@@ -31,6 +31,7 @@ namespace View
                 "Москва", "Кузбасская государственная педагогическая академия", "2000", "255");
             Console.WriteLine("Диссертация");
             Console.WriteLine(thesis1.Info());
+            Console.ReadKey();
 
 
         }
