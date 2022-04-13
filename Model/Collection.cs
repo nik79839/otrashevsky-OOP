@@ -56,10 +56,13 @@ namespace Model
 			Publisher = publisher;
 		}
 
-        public override string Info()
+        public override string Info
         {
-            return $"{Name}: {NameOfConference}. - {Place}: {Publisher}," +
-			$" {Year}. - {PageCount} с.";
+			get
+			{
+				return $"{Name}: {NameOfConference}. - {Place}: {Publisher}," +
+				$" {Year}. - {PageCount} с.";
+			}
 		}
     }
 }

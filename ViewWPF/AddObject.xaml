@@ -1,0 +1,19 @@
+﻿<Window x:Class="ViewWPF.AddObject"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ViewWPF"
+        mc:Ignorable="d"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Title="AddObject" Height="450" Width="300" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="39*"></RowDefinition>
+            <RowDefinition Height="395*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ComboBox Name="combo" ItemsSource="{Binding Path=listNameClass}" DisplayMemberPath="Name" HorizontalAlignment="Center" SelectedIndex="0"/>
+        </StackPanel>
+    </Grid>
+</Window>

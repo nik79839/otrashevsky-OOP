@@ -76,10 +76,13 @@ namespace Model
         /// Information
         /// </summary>
         /// <returns></returns>
-        public override string Info()
+        public override string Info
         {
-            return $"{Name}: {Type} / учредитель {Founder}; ред. {MainEditor}. - {Place}" +
-            $", {Year}. - {PageCount} с.";
+            get
+            {
+                return $"{Name}: {Type} / учредитель {Founder}; ред. {MainEditor}. - {Place}" +
+                $", {Year}. - {PageCount} с.";
+            }
         }
     }
 }

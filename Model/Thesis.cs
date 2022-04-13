@@ -88,10 +88,13 @@ namespace Model
 			University = university;
 		}
 
-        public override string Info()
-        {
-            return $"{Author}. {Name}: {Specialization}: {Type} ; {University}. - {Place}" +
-			$", {Year}. - {PageCount} с.";
+        public override string Info
+		{
+			get
+			{
+				return $"{Author}. {Name}: {Specialization}: {Type} ; {University}. - {Place}" +
+				$", {Year}. - {PageCount} с.";
+			}
 		}
     }
 }

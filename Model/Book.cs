@@ -84,16 +84,19 @@ namespace Model
             Publisher = publisher;
         }
 
-        public override string Info()
+        public override string Info
         {
-            string mainAuthor = MainAuthor == ""
-                        ? ""
-                        : MainAuthor + " ";
-            string type = Type == ""
-                ? ""
-                : ": " + Type + ",";
-            return $"{mainAuthor}{Name}{type}. - {Place}.: {Publisher}" +
-                $", {Year}. - {PageCount} с.";
+            get
+            {
+                string mainAuthor = MainAuthor == ""
+                            ? ""
+                            : MainAuthor + " ";
+                string type = Type == ""
+                    ? ""
+                    : ": " + Type + ",";
+                return $"{mainAuthor}{Name}{type}. - {Place}.: {Publisher}" +
+                    $", {Year}. - {PageCount} с.";
+            }
         }
     }
 }

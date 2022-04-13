@@ -193,7 +193,7 @@ namespace Model
         /// Info about edition
         /// </summary>
         /// <returns></returns>
-        public abstract string Info();
+        public abstract string Info { get; }
 
     }
 }
