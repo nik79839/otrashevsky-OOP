@@ -105,6 +105,7 @@ namespace Model
         /// Check on empty or null string
         /// </summary>
         /// <param name="value">value</param>
+        /// //TODO: XML
         /// <param name="name">name of value</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
@@ -149,8 +150,9 @@ namespace Model
         private string CheckYear(string value)
         {
             CheckEmptyOrNull(value);
-
+            //TODO: duplication
             string pattern = @"^[0-9]*$";
+            //TODO:
             const int maximumYear = 2022;
             const int minimumYear = 0;
             if (!Regex.IsMatch(value, pattern))
@@ -173,6 +175,7 @@ namespace Model
         /// <exception cref="ArgumentException"></exception>
         private string CheckPageCount(string value)
         {
+            //TODO: duplication
             CheckEmptyOrNull(value);
             string pattern = @"^[0-9]*$";
             if (!Regex.IsMatch(value, pattern))
@@ -189,6 +192,7 @@ namespace Model
             return value;
         }
 
+        //TODO: В свойство
         /// <summary>
         /// Info about edition
         /// </summary>
