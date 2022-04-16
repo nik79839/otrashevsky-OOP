@@ -30,21 +30,27 @@ namespace ViewWPF
         {
             InitializeComponent();
             items.ItemsSource = EditionBases;
-            //items.DataContext = EditionBases;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Book book1 = new Book("Филиппова А.Г", "История", "учебное пособие",
                 "Москва", "Юнион", "2011", "126");
-            EditionBases.Add(book1);
-            
+            EditionBases.Add(book1);           
         }
 
         private void AddObjectButton_Click(object sender, RoutedEventArgs e)
         {
             AddObject addObjectWindow=new AddObject();
-            addObjectWindow.Show();
+            if (addObjectWindow.ShowDialog()==true)
+            {
+                EditionBases.Add(addObjectWindow._selectedEdition);
+            }
+        }
+
+        private void SaveMenu_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -8,14 +8,13 @@
         Title="MainWindow" Height="500" Width="600" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="10*"></RowDefinition>
             <RowDefinition Height="184*"></RowDefinition>
-            <RowDefinition Height="25*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="53*"></ColumnDefinition>
-            <ColumnDefinition Width="8*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <GroupBox Header="Editon list" Grid.Column="0" Grid.Row="0" Margin="10,10,0,0">
+        <GroupBox Header="Editon list" Grid.Column="0" Grid.Row="1" Margin="10,10,10,10">
             <ListBox Name="items" ItemsSource="{Binding EditionBases}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -24,17 +23,17 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </GroupBox>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Width="197">
-            <Button Content="Add object" VerticalAlignment="Center" Margin="0,0,10,0" Padding="5,4,5,5" Click="AddObjectButton_Click"/>
-            <Button Content="Remove object" VerticalAlignment="Center" Margin="10,0,10,0" Padding="5,5,5,5"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
-            <Button Content="Search" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" Padding="5,5,5,5"/>
-            <Button Content="Reset" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,0,0" Padding="5,5,5,5"/>
-        </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Margin="0,40,0,0">
-            <Button Content="Open file" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="8,10,8,5" Padding="5,5,5,5"/>
-            <Button Content="Save file" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="8,5,8,10" Padding="5,5,5,5"/>
-        </StackPanel>
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Stretch">
+            <MenuItem Header="File">
+                <MenuItem Header="Open"/>
+                <MenuItem Header="Save" Click="SaveMenu_Click"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Add object" Click="AddObjectButton_Click"/>
+                <MenuItem Header="Remove object"/>
+            </MenuItem>
+            <MenuItem Header="Search">
+            </MenuItem>
+        </Menu>
     </Grid>
 </Window>
