@@ -15,22 +15,22 @@
             <ColumnDefinition Width="53*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <GroupBox Header="Editon list" Grid.Column="0" Grid.Row="1" Margin="10,10,10,10">
-            <ListBox Name="items" ItemsSource="{Binding EditionBases}">
+            <ListBox Name="items" ItemsSource="{Binding EditionBases}" SelectedItem="{Binding SelectionEditionBase}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Path=Info}" TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Text="{Binding Path=Info}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </GroupBox>
         <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Stretch">
             <MenuItem Header="File">
-                <MenuItem Header="Open"/>
+                <MenuItem Header="Open" Click="OpenMenu_Click"/>
                 <MenuItem Header="Save" Click="SaveMenu_Click"/>
             </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem Header="Add object" Click="AddObjectButton_Click"/>
-                <MenuItem Header="Remove object"/>
+                <MenuItem Header="Remove object" Click="RemoveObjectButton_Click"/>
             </MenuItem>
             <MenuItem Header="Search">
             </MenuItem>

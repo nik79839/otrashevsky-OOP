@@ -72,6 +72,13 @@ namespace Model
             MainEditor = mainEditor;
         }
 
+        /// <summary>
+		/// Конструктор класса для сериализации
+		/// </summary>
+		public Magazine() : this("A", "A", "A", "A", "A", "1","1")
+        {
+        }
+
         //TODO: XML
         /// <summary>
         /// Information

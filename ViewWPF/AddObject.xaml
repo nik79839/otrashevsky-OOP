@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         
         <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <ComboBox Name="combo" ItemsSource="{Binding Path=listNameClass}" DisplayMemberPath="Name" HorizontalAlignment="Center" SelectedIndex="0"
+            <ComboBox Name="combo" ItemsSource="{Binding ListNameClass}" DisplayMemberPath="Name" HorizontalAlignment="Center" SelectedIndex="0"
                       SelectedItem="{Binding SelectedTypeOFEdition, Mode=TwoWay}" SelectionChanged="combo_SelectionChanged"/>
             <Button Content="Ok" Click="OkButton_Click"/>
         </StackPanel>
@@ -23,7 +23,15 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="{Binding Path=PropertyName}"/>
-                        <TextBox Width="100" Text="{Binding Value}"/>
+                        <TextBox Width="100" >
+                            <TextBox.Text>
+                                <Binding Path="Value" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                     </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

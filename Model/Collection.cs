@@ -56,7 +56,14 @@ namespace Model
 			Publisher = publisher;
 		}
 
-        public override string Info
+		/// <summary>
+		/// Конструктор класса для сериализации
+		/// </summary>
+		public Collection() : this("A", "A", "A", "A", "1", "1")
+		{
+		}
+
+		public override string Info
         {
 			get
 			{

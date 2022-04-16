@@ -88,7 +88,14 @@ namespace Model
 			University = university;
 		}
 
-        public override string Info
+		/// <summary>
+		/// Конструктор класса для сериализации
+		/// </summary>
+		public Thesis() : this("A", "A", "A", "A", "A", "A", "1","1")
+		{
+		}
+
+		public override string Info
 		{
 			get
 			{

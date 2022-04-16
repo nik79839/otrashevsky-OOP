@@ -1,6 +1,7 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace ViewWPF
 		/// Сериализатор
 		/// </summary>
 		private static readonly XmlSerializer _xmlSerializer =
-			new XmlSerializer(typeof(List<EditionBase>),
+			new XmlSerializer(typeof(ObservableCollection<EditionBase>),
 				new[]
 				{
 					typeof(Book),
@@ -27,7 +28,7 @@ namespace ViewWPF
 		/// <summary>
 		/// Cохранение в файл
 		/// </summary>
-		public static void SaveFile(string path, List<EditionBase> editionList)
+		public static void SaveFile(string path, ObservableCollection<EditionBase> editionList)
 		{
 			using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
 			{
@@ -38,12 +39,12 @@ namespace ViewWPF
 		/// <summary>
 		/// Открытие файла
 		/// </summary>
-		public static List<EditionBase> OpenFile(string path)
+		public static ObservableCollection<EditionBase> OpenFile(string path)
 		{
-			List<EditionBase> editionList = new List<EditionBase>();
+			ObservableCollection<EditionBase> editionList = new ObservableCollection<EditionBase>();
 			using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
 			{
-				editionList = (List<EditionBase>)_xmlSerializer.Deserialize(fs);
+				editionList = (ObservableCollection<EditionBase>)_xmlSerializer.Deserialize(fs);
 			}
 			return editionList;
 		}

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ViewWPF
 {
@@ -15,9 +16,21 @@ namespace ViewWPF
 
         public object Value
         {
-            get => _propertyInfo.GetValue(_source);
-            set => _propertyInfo.SetValue(_source,
-                       Convert.ChangeType(value, _propertyInfo.PropertyType));
+            get
+            {
+                return _propertyInfo.GetValue(_source);
+            }
+            set
+            {
+                try
+                {
+                    _propertyInfo.SetValue(_source, value);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.InnerException.Message);
+                }
+            }
         }
 
         public Property(object source, PropertyInfo propertyInfo)

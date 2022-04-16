@@ -1,6 +1,7 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
@@ -24,10 +25,34 @@ namespace ViewWPF
     public partial class AddObject : Window,INotifyPropertyChanged
     {
         private Type _selectedTypeOFEdition;
+        private IEnumerable<Type> _listNameClass;
+        private ObservableCollection<Property> _propertyes;
         public EditionBase _selectedEdition { get; set; }
-        public List<Property> Propertyes;
-        public IEnumerable<Type> listNameClass { get; set; }
-        
+        public ObservableCollection<Property> Propertyes
+        {
+            get
+            {
+                return _propertyes;
+            }
+            set
+            {
+                _propertyes = value;
+                OnPropertyChanged("Propertyes");
+            }
+        }
+        public IEnumerable<Type> ListNameClass
+        {
+            get
+            {
+                return _listNameClass;
+            }
+            set
+            {
+                _listNameClass = value;
+                OnPropertyChanged("ListNameClass");
+            }
+        }
+
         public Type SelectedTypeOFEdition
         {
             get
@@ -42,14 +67,12 @@ namespace ViewWPF
         }
 
         public AddObject()
-        {
+        {          
             InitializeComponent();
-            
-            listNameClass=new List<Type>();
-            listNameClass = Assembly.GetAssembly(typeof(EditionBase))
+            DataContext = this;
+            ListNameClass =new List<Type>();
+            ListNameClass = Assembly.GetAssembly(typeof(EditionBase))
                 .GetTypes().Where(type => type.IsSubclassOf(typeof(EditionBase)));
-            
-            combo.ItemsSource = listNameClass;
         }
 
         private List<PropertyInfo> PropertyInfo(object editionBase)
@@ -103,11 +126,12 @@ namespace ViewWPF
                     }
             }
             object source = _selectedEdition;
-            var propertyes=new List<Property>();
+            var propertyes=new ObservableCollection<Property>();
             foreach (var pi in PropertyInfo(source))
+            {
                 propertyes.Add(new Property(source, pi));
+            }               
             Propertyes = propertyes;
-            items.ItemsSource = Propertyes;
         }
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
