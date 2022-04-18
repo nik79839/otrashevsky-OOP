@@ -9,7 +9,7 @@
         Title="AddObject" Height="450" Width="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="39*"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="395*"></RowDefinition>
         </Grid.RowDefinitions>
         

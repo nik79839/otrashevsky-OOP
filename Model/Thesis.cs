@@ -22,7 +22,12 @@ namespace Model
 		public string Author
 		{
 			get => _author;
-			set => _author = CheckLanguage(value);
+			set
+			{
+				CheckEmpty(value);
+				CheckLanguage(value);
+				_author = value;
+			}
 		}
 
 		/// <summary>
@@ -55,7 +60,13 @@ namespace Model
 		public string Type
 		{
 			get => _type;
-			set => _type = CheckLanguage(value);
+			set
+			{
+				CheckEmpty(value);
+				CheckLanguage(value);
+				_type=value;
+			}
+            
 		}
 
 		/// <summary>
@@ -95,6 +106,9 @@ namespace Model
 		{
 		}
 
+		/// <summary>
+		/// Info
+		/// </summary>
 		public override string Info
 		{
 			get

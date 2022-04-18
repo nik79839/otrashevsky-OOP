@@ -153,7 +153,7 @@ namespace Model
             //TODO:
             if (!Regex.IsMatch(value, pattern))
             {
-                throw new ArgumentException($"Value must only contain numbers");
+                throw new ArgumentException("Value must only contain numbers");
             }
             if (Convert.ToInt32(value) > maximum || Convert.ToInt32(value) < minimum)
             {

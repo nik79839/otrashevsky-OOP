@@ -41,7 +41,12 @@ namespace Model
         public string Type
         {
             get => _type;
-            set => _type = CheckLanguage(value);
+            set
+            {
+                CheckEmpty(value);
+                CheckLanguage(value);
+                _type = value;
+            }
         }
 
         /// <summary>
@@ -50,7 +55,12 @@ namespace Model
         public string MainEditor
         {
             get => _mainEditor;
-            set => _mainEditor = CheckLanguage(value);
+            set
+            {
+                CheckEmpty(value);
+                CheckLanguage(value);
+                _mainEditor = value;
+            }
         }
 
         /// <summary>
@@ -83,7 +93,6 @@ namespace Model
         /// <summary>
         /// Information
         /// </summary>
-        /// <returns></returns>
         public override string Info
         {
             get

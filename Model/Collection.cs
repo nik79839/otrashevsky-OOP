@@ -63,6 +63,9 @@ namespace Model
 		{
 		}
 
+		/// <summary>
+		/// Information
+		/// </summary>
 		public override string Info
         {
 			get
