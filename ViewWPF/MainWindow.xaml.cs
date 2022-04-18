@@ -29,8 +29,20 @@ namespace ViewWPF
         /// Список с изданиями
         /// </summary>
         private ObservableCollection<EditionBase> _editionBases;
+
+        /// <summary>
+        /// Переменная для фильтрации изданий
+        /// </summary>
         private string _searchText;
+
+        /// <summary>
+        /// Выбранный элемент listbox
+        /// </summary>
         public EditionBase SelectionEditionBase { get; set; }
+
+        /// <summary>
+        /// Свойство для фильтрации изданий
+        /// </summary>
         public string SearchText
         {
             get
@@ -44,6 +56,10 @@ namespace ViewWPF
                 OnPropertyChanged("EditionBases");
             }
         }
+
+        /// <summary>
+        /// Список изданий
+        /// </summary>
         public ObservableCollection<EditionBase> EditionBases
         {
             get
@@ -54,8 +70,8 @@ namespace ViewWPF
                 }
                 else
                 {
-                    ObservableCollection<EditionBase> _editionBases1 = new ObservableCollection<EditionBase>(_editionBases.
-                        Where(x => x.Info.ToLower().Contains(SearchText.ToLower())));
+                    ObservableCollection<EditionBase> _editionBases1 = new ObservableCollection<EditionBase>(
+                        _editionBases.Where(x => x.Info.ToLower().Contains(SearchText.ToLower())));
                     return _editionBases1;
                 }
             }
@@ -65,20 +81,22 @@ namespace ViewWPF
                 OnPropertyChanged("EditionBases");
             }
         }
+
+        /// <summary>
+        /// При иннициализации формы
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
             Book book1 = new Book("Филиппова А.Г", "История", "учебное пособие",
                 "Москва", "Юнион", "2011", "126");
-            EditionBases = new ObservableCollection<EditionBase>();
-            EditionBases.Add(book1);
+            EditionBases = new ObservableCollection<EditionBase>() { book1 };
         }
 
+        /// <summary>
+        /// При нажатии на кнопку добавления элемента
+        /// </summary>
         private void AddObjectButton_Click(object sender, RoutedEventArgs e)
         {
             AddObject addObjectWindow=new AddObject();
@@ -88,6 +106,9 @@ namespace ViewWPF
             }
         }
 
+        /// <summary>
+        /// При нажатии на кнопку сохранения
+        /// </summary>
         private void SaveMenu_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -108,6 +129,9 @@ namespace ViewWPF
             }
 }
 
+        /// <summary>
+        /// При нажатии кнопки сохранения файла
+        /// </summary>
         private void OpenMenu_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -128,16 +152,26 @@ namespace ViewWPF
             }
         }
 
+        /// <summary>
+        /// При нажатии кнопки удаления
+        /// </summary>
+        private void RemoveObjectButton_Click(object sender, RoutedEventArgs e)
+        {
+            EditionBases.Remove(SelectionEditionBase);
+        }
+
+        /// <summary>
+        /// Событие изменения свойства
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Уведомление об изменении свойства
+        /// </summary>
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
-
-        private void RemoveObjectButton_Click(object sender, RoutedEventArgs e)
-        {
-            EditionBases.Remove(SelectionEditionBase);
         }
     }
 }

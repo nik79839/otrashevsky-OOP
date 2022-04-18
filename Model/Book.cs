@@ -34,7 +34,8 @@ namespace Model
             get => _mainAuthor;
             set
             {
-                CheckEmptyAndLanguage(value);
+                CheckEmpty(value);
+                CheckLanguage(value);
                 _mainAuthor = value;
             }
         }
@@ -47,7 +48,7 @@ namespace Model
             get => _publisher;
             set
             {
-                CheckEmptyOrNull(value);
+                CheckEmpty(value);
                 _publisher = value;
             }
         }
@@ -60,7 +61,7 @@ namespace Model
             get => _type;
             set
             {
-                CheckEmptyAndLanguage(value);
+                CheckLanguage(value);
                 _type = value;
             }
         }
@@ -87,7 +88,7 @@ namespace Model
         /// <summary>
 		/// Конструктор класса для сериализации
 		/// </summary>
-		public Book() : this("default", "default", "default", "default", "default", "1", "1")
+		public Book()
         {
         }
 
@@ -95,13 +96,10 @@ namespace Model
         {
             get
             {
-                string mainAuthor = MainAuthor == ""
-                            ? ""
-                            : MainAuthor + " ";
                 string type = Type == ""
                     ? ""
-                    : ": " + Type + ",";
-                return $"{mainAuthor}{Name}{type}. - {Place}.: {Publisher}" +
+                    : ": " + Type;
+                return $"{MainAuthor} {Name}{type}. - {Place}.: {Publisher}" +
                     $", {Year}. - {PageCount} с.";
             }
         }

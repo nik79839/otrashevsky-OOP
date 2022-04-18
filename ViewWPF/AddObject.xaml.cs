@@ -44,7 +44,6 @@ namespace ViewWPF
             {
                 if (SelectedTypeOFEdition != null)
                 {
-                    MessageBox.Show(SelectedTypeOFEdition.Name);
                     object source = SelectedEdition;
                     _propertyes = new ObservableCollection<Property>();
                     foreach (var pi in PropertyInfo(source))
@@ -118,6 +117,9 @@ namespace ViewWPF
             }
         }
 
+        /// <summary>
+        /// При иннициализации формы
+        /// </summary>
         public AddObject()
         {          
             InitializeComponent();
@@ -144,26 +146,36 @@ namespace ViewWPF
                 propertyInfo.Add(info);
             }
             return propertyInfo;
-        }
+        }       
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
-
+        /// <summary>
+        /// При нажатии кнопки "Ок"
+        /// </summary>
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
             foreach (var property in Propertyes)
             {
                 if (property.Value.ToString() == "")
-                {
-                    MessageBox.Show($"Поле '{property.PropertyName}' не было изменено") ;
-                    return;
+                {                  
+                    property.Value = "";
                 }
+                if (property.PropertyInfo.GetValue(property.Source) == null) return;
             }
             this.DialogResult=true;
+        }
+
+        /// <summary>
+        /// Событие изменения свойства
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Уведомление об изменении свойства
+        /// </summary>
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

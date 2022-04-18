@@ -9,40 +9,64 @@ using System.Windows;
 
 namespace ViewWPF
 {
+    /// <summary>
+    /// Класс для описания свойства
+    /// </summary>
     public class Property
     {
-        object _source;
-        PropertyInfo _propertyInfo;
+        /// <summary>
+        /// Объект для получения списка свойств
+        /// </summary>
+        public object Source { get; set; }
+
+        /// <summary>
+        /// Объект свойства
+        /// </summary>
+        public PropertyInfo PropertyInfo { get; set; }
+
+        /// <summary>
+        /// Имя свойства
+        /// </summary>
         public string PropertyName { get; }
 
+        /// <summary>
+        /// Значение свойства
+        /// </summary>
         public object Value
         {
             get
             {
-                if (_propertyInfo.GetValue(_source).ToString().ToLower() == "default" | _propertyInfo.GetValue(_source).ToString() == "1")
+                if (PropertyInfo.GetValue(Source) == null)
                 {
                     return "";
                 }
-                return _propertyInfo.GetValue(_source);
+                return PropertyInfo.GetValue(Source);
             }
             set
             {
                 try
                 {
-                    _propertyInfo.SetValue(_source, value);
+                    PropertyInfo.SetValue(Source, value);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.InnerException.Message);
+                    MessageBox.Show(PropertyName+"\n " + ex.InnerException.Message,"",
+                        MessageBoxButton.OK,MessageBoxImage.Error);
                 }
             }
         }
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="source">объект</param>
+        /// <param name="propertyInfo">свойство</param>
         public Property(object source, PropertyInfo propertyInfo)
         {
-            _source = source;
-            _propertyInfo = propertyInfo;
-            PropertyName = Regex.Replace(propertyInfo.Name, @"([A-Z])", " $1").Trim().ToLower()+":"; ;
+            Source = source;
+            PropertyInfo = propertyInfo;
+            PropertyName = propertyInfo.Name.Substring(0,1)+Regex.Replace(
+                propertyInfo.Name.Substring(1),@"([A-Z])", " $1").Trim().ToLower();
         }
 
     }

@@ -22,7 +22,7 @@ namespace Model
 		public string Author
 		{
 			get => _author;
-			set => _author = CheckEmptyAndLanguage(value);
+			set => _author = CheckLanguage(value);
 		}
 
 		/// <summary>
@@ -36,7 +36,7 @@ namespace Model
 		public string Specialization
 		{
 			get => _specialization;
-			set => _specialization = CheckEmptyOrNull(value);
+			set => _specialization = CheckEmpty(value);
 		}
 
 		/// <summary>
@@ -55,7 +55,7 @@ namespace Model
 		public string Type
 		{
 			get => _type;
-			set => _type = CheckEmptyAndLanguage(value);
+			set => _type = CheckLanguage(value);
 		}
 
 		/// <summary>
@@ -64,7 +64,7 @@ namespace Model
 		public string University
 		{
 			get => _university;
-			set => _university = CheckEmptyOrNull(value);
+			set => _university = CheckEmpty(value);
 		}
 
 		/// <summary>
@@ -91,7 +91,7 @@ namespace Model
 		/// <summary>
 		/// Конструктор класса для сериализации
 		/// </summary>
-		public Thesis() : this("default", "default", "default", "default", "default", "default", "1","1")
+		public Thesis()
 		{
 		}
 

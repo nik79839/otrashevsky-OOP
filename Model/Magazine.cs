@@ -32,7 +32,7 @@ namespace Model
         public string Founder
         {
             get => _founder;
-            set => _founder = CheckEmptyOrNull(value);
+            set => _founder = CheckEmpty(value);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Model
         public string Type
         {
             get => _type;
-            set => _type = CheckEmptyAndLanguage(value);
+            set => _type = CheckLanguage(value);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Model
         public string MainEditor
         {
             get => _mainEditor;
-            set => _mainEditor = CheckEmptyAndLanguage(value);
+            set => _mainEditor = CheckLanguage(value);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Model
         /// <summary>
 		/// Конструктор класса для сериализации
 		/// </summary>
-		public Magazine() : this("default", "default", "default", "default", "default", "1","1")
+		public Magazine()
         {
         }
 

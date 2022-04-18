@@ -27,7 +27,7 @@ namespace Model
 		public string Publisher
 		{
 			get => _publisher;
-			set => _publisher = CheckEmptyOrNull(value);
+			set => _publisher = CheckEmpty(value);
 		}
 
 		/// <summary>
@@ -36,7 +36,7 @@ namespace Model
 		public string NameOfConference
 		{
 			get => _nameOfConference;
-			set => _nameOfConference = CheckEmptyOrNull(value);
+			set => _nameOfConference = CheckEmpty(value);
 		}
 
 		/// <summary>
@@ -59,7 +59,7 @@ namespace Model
 		/// <summary>
 		/// Конструктор класса для сериализации
 		/// </summary>
-		public Collection() : this("default", "default", "default", "default", "1", "1")
+		public Collection()
 		{
 		}
 
