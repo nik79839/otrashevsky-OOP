@@ -6,16 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ViewWPF
 {
@@ -24,14 +15,39 @@ namespace ViewWPF
     /// </summary>
     public partial class AddObject : Window,INotifyPropertyChanged
     {
-        private Type _selectedTypeOFEdition;
+        /// <summary>
+        /// Выбранный тип в combobox
+        /// </summary>
+        private Type _selectedTypeOFEdition = typeof(Book);
+
+        /// <summary>
+        /// Список подтипов класса EditionBase
+        /// </summary>
         private IEnumerable<Type> _listNameClass;
+
+        /// <summary>
+        /// Список открытых свойств класса
+        /// </summary>
         private ObservableCollection<Property> _propertyes;
-        public EditionBase _selectedEdition { get; set; }
+
+        /// <summary>
+        /// Экземпляр издания
+        /// </summary>
+        public EditionBase SelectedEdition { get; set; }
+
+        /// <summary>
+        /// Список открытых свойств класса
+        /// </summary>
         public ObservableCollection<Property> Propertyes
         {
             get
             {
+                object source = SelectedEdition;
+                _propertyes = new ObservableCollection<Property>();
+                foreach (var pi in PropertyInfo(source))
+                {
+                    _propertyes.Add(new Property(source, pi));
+                }
                 return _propertyes;
             }
             set
@@ -40,6 +56,10 @@ namespace ViewWPF
                 OnPropertyChanged("Propertyes");
             }
         }
+
+        /// <summary>
+        /// Список подтипов класса EditionBase
+        /// </summary>
         public IEnumerable<Type> ListNameClass
         {
             get
@@ -53,6 +73,9 @@ namespace ViewWPF
             }
         }
 
+        /// <summary>
+        /// Выбранный тип в combobox
+        /// </summary>
         public Type SelectedTypeOFEdition
         {
             get
@@ -62,7 +85,32 @@ namespace ViewWPF
             set
             {
                 _selectedTypeOFEdition = value;
+                switch (_selectedTypeOFEdition.Name)
+                {
+                    case nameof(Book):
+                        {
+                            SelectedEdition = new Book();
+                            break;
+                        }
+                    case nameof(Collection):
+                        {
+                            SelectedEdition = new Collection();
+                            break;
+                        }
+                    case nameof(Magazine):
+                        {
+                            SelectedEdition = new Magazine("Вопросы", "Научный журнал", "ООО 'Редация'",
+                    "Москва", "А.А. Искендеров", "2011", "518");
+                            break;
+                        }
+                    case nameof(Thesis):
+                        {
+                            SelectedEdition = new Thesis();
+                            break;
+                        }
+                }
                 OnPropertyChanged("SelectedTypeOFEdition");
+                OnPropertyChanged("Propertyes");
             }
         }
 
@@ -75,6 +123,11 @@ namespace ViewWPF
                 .GetTypes().Where(type => type.IsSubclassOf(typeof(EditionBase)));
         }
 
+        /// <summary>
+        /// Получение свойств объекта класса
+        /// </summary>
+        /// <param name="editionBase">Объект</param>
+        /// <returns>Список свойств</returns>
         private List<PropertyInfo> PropertyInfo(object editionBase)
         {
             var propertyInfo = new List<PropertyInfo>();
@@ -96,46 +149,16 @@ namespace ViewWPF
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
-        private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            switch (SelectedTypeOFEdition.Name)
-            {
-                case nameof(Book):
-                    {
-                        _selectedEdition = new Book();
-                        break;
-                    }
-                case nameof(Collection):
-                    {
-                        _selectedEdition = new Collection("Инновации", "Международная конференция",
-                "Москва", "Московский Государственный Унверститет", "2012", "58");
-                        break;
-                    }
-                case nameof(Magazine):
-                    {
-                        _selectedEdition = new Magazine("Вопросы", "Научный журнал", "ООО 'Редация'",
-                "Москва", "А.А. Искендеров", "2011", "518");
-                        break;
-                    }
-                case nameof(Thesis):
-                    {
-                        _selectedEdition = new Thesis("Филиппова А.Г", "Название диссертации",
-                "диссертация на соискание ученой степени", "специальность 13.00.01 'Общая педагогика'",
-                "Москва", "Кузбасская государственная педагогическая академия", "2000", "255");
-                        break;
-                    }
-            }
-            object source = _selectedEdition;
-            var propertyes=new ObservableCollection<Property>();
-            foreach (var pi in PropertyInfo(source))
-            {
-                propertyes.Add(new Property(source, pi));
-            }               
-            Propertyes = propertyes;
-        }
-
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
+            foreach (var property in Propertyes)
+            {
+                if (property.Value.ToString() == "default")
+                {
+                    MessageBox.Show($"Поле '{property.PropertyName}' не было изменено") ;
+                    return;
+                }
+            }
             this.DialogResult=true;
         }
     }

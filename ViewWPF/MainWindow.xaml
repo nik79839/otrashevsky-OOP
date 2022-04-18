@@ -8,14 +8,14 @@
         Title="MainWindow" Height="500" Width="600" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
             <RowDefinition Height="184*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="53*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <GroupBox Header="Editon list" Grid.Column="0" Grid.Row="1" Margin="10,10,10,10">
-            <ListBox Name="items" ItemsSource="{Binding EditionBases}" SelectedItem="{Binding SelectionEditionBase}">
+            <ListBox Name="items" ItemsSource="{Binding EditionBases}" SelectedItem="{Binding SelectionEditionBase}" SelectionMode="Extended">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Path=Info}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"/>
@@ -33,6 +33,7 @@
                 <MenuItem Header="Remove object" Click="RemoveObjectButton_Click"/>
             </MenuItem>
             <MenuItem Header="Search">
+                <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Width="200" />
             </MenuItem>
         </Menu>
     </Grid>

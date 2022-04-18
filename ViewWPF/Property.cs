@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -37,7 +38,7 @@ namespace ViewWPF
         {
             _source = source;
             _propertyInfo = propertyInfo;
-            PropertyName = propertyInfo.Name;
+            PropertyName = Regex.Replace(propertyInfo.Name, @"([A-Z])", " $1").Trim().ToLower()+":"; ;
         }
 
     }

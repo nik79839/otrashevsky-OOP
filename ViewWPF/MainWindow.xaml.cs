@@ -29,12 +29,35 @@ namespace ViewWPF
         /// Список с изданиями
         /// </summary>
         private ObservableCollection<EditionBase> _editionBases;
+        private string _searchText;
         public EditionBase SelectionEditionBase { get; set; }
+        public string SearchText
+        {
+            get
+            {
+                return _searchText;
+            }
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged("SearchText");
+                OnPropertyChanged("EditionBases");
+            }
+        }
         public ObservableCollection<EditionBase> EditionBases
         {
             get
             {
-                return _editionBases;
+                if (string.IsNullOrEmpty(SearchText))
+                {
+                    return _editionBases;
+                }
+                else
+                {
+                    ObservableCollection<EditionBase> _editionBases1 = new ObservableCollection<EditionBase>(_editionBases.
+                        Where(x => x.Info.ToLower().Contains(SearchText.ToLower())));
+                    return _editionBases1;
+                }
             }
             set
             {
@@ -61,7 +84,7 @@ namespace ViewWPF
             AddObject addObjectWindow=new AddObject();
             if (addObjectWindow.ShowDialog()==true)
             {
-                EditionBases.Add(addObjectWindow._selectedEdition);
+                EditionBases.Add(addObjectWindow.SelectedEdition);
             }
         }
 

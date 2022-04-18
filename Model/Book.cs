@@ -87,7 +87,7 @@ namespace Model
         /// <summary>
 		/// Конструктор класса для сериализации
 		/// </summary>
-		public Book() : this("A", "A", "A", "A", "A", "1", "1")
+		public Book() : this("default", "default", "default", "default", "default", "1", "1")
         {
         }
 
