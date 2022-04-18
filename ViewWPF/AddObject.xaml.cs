@@ -18,7 +18,7 @@ namespace ViewWPF
         /// <summary>
         /// Выбранный тип в combobox
         /// </summary>
-        private Type _selectedTypeOFEdition = typeof(Book);
+        private Type _selectedTypeOFEdition;
 
         /// <summary>
         /// Список подтипов класса EditionBase
@@ -42,11 +42,15 @@ namespace ViewWPF
         {
             get
             {
-                object source = SelectedEdition;
-                _propertyes = new ObservableCollection<Property>();
-                foreach (var pi in PropertyInfo(source))
+                if (SelectedTypeOFEdition != null)
                 {
-                    _propertyes.Add(new Property(source, pi));
+                    MessageBox.Show(SelectedTypeOFEdition.Name);
+                    object source = SelectedEdition;
+                    _propertyes = new ObservableCollection<Property>();
+                    foreach (var pi in PropertyInfo(source))
+                    {
+                        _propertyes.Add(new Property(source, pi));
+                    }
                 }
                 return _propertyes;
             }
@@ -153,7 +157,7 @@ namespace ViewWPF
         {
             foreach (var property in Propertyes)
             {
-                if (property.Value.ToString() == "default")
+                if (property.Value.ToString() == "")
                 {
                     MessageBox.Show($"Поле '{property.PropertyName}' не было изменено") ;
                     return;

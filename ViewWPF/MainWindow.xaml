@@ -32,9 +32,10 @@
                 <MenuItem Header="Add object" Click="AddObjectButton_Click"/>
                 <MenuItem Header="Remove object" Click="RemoveObjectButton_Click"/>
             </MenuItem>
-            <MenuItem Header="Search">
-                <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Width="200" />
-            </MenuItem>
         </Menu>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,3,0">
+            <Label Content="Search: " Padding="1,1,1,1"/>
+            <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Width="150"/>
+        </StackPanel>
     </Grid>
 </Window>

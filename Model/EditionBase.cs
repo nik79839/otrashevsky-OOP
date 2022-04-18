@@ -68,7 +68,7 @@ namespace Model
             get => _year;
             set
             {
-                CheckYear(value);
+                CheckValueOnLimits(value,0,DateTime.Now.Year);
                 _year = value;
             }
         }
@@ -81,7 +81,7 @@ namespace Model
             get => _pageCount;
             set
             {
-                CheckPageCount(value);
+                CheckValueOnLimits(value, 0, 100000);
                 _pageCount = value;
             }
         }
@@ -163,6 +163,24 @@ namespace Model
             {
                 throw new ArgumentException($"Year should be " +
                     $"between {minimumYear} and {maximumYear}");
+            }
+            return value;
+        }
+
+        private string CheckValueOnLimits(string value,int minimum,int maximum)
+        {
+            CheckEmptyOrNull(value);
+            //TODO: duplication
+            string pattern = @"^[0-9]*$";
+            //TODO:
+            if (!Regex.IsMatch(value, pattern))
+            {
+                throw new ArgumentException($"Value must only contain numbers");
+            }
+            if (Convert.ToInt32(value) > maximum || Convert.ToInt32(value) < minimum)
+            {
+                throw new ArgumentException($"Value should be " +
+                    $"between {minimum} and {maximum}");
             }
             return value;
         }

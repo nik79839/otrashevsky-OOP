@@ -19,6 +19,10 @@ namespace ViewWPF
         {
             get
             {
+                if (_propertyInfo.GetValue(_source).ToString().ToLower() == "default" | _propertyInfo.GetValue(_source).ToString() == "1")
+                {
+                    return "";
+                }
                 return _propertyInfo.GetValue(_source);
             }
             set
