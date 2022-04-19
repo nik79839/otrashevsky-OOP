@@ -1,20 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Win32;
 using Model;
 
@@ -52,7 +41,7 @@ namespace ViewWPF
             set
             {
                 _searchText = value;
-                OnPropertyChanged("SearchText");
+                //OnPropertyChanged("SearchText");
                 OnPropertyChanged("EditionBases");
             }
         }
@@ -88,7 +77,6 @@ namespace ViewWPF
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = this;
             Book book1 = new Book("Филиппова А.Г", "История", "учебное пособие",
                 "Москва", "Юнион", "2011", "126");
             EditionBases = new ObservableCollection<EditionBase>() { book1 };

@@ -5,20 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ViewWPF"
         mc:Ignorable="d"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="MainWindow" Height="500" Width="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>
             <RowDefinition Height="184*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="53*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
         <GroupBox Header="Editon list" Grid.Column="0" Grid.Row="1" Margin="10,10,10,10">
             <ListBox Name="items" ItemsSource="{Binding EditionBases}" SelectedItem="{Binding SelectionEditionBase}" SelectionMode="Extended">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Path=Info}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"/>
+                        <Label Content="{Binding Path=Info}"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

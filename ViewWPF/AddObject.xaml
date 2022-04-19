@@ -12,17 +12,16 @@
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="395*"></RowDefinition>
         </Grid.RowDefinitions>
-        
         <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
             <ComboBox Name="combo" ItemsSource="{Binding ListNameClass}" DisplayMemberPath="Name" HorizontalAlignment="Center" SelectedIndex="0"
-                      SelectedItem="{Binding SelectedTypeOFEdition,Mode=TwoWay}" Margin="0,0,5,0"/>
+                      SelectedItem="{Binding SelectedTypeOFEdition}" Margin="0,0,5,0"/>
             <Button Content="Ok" Click="OkButton_Click" Margin="5,0,0,0" Padding="5,5,5,5"/>
         </StackPanel>
-        <ItemsControl ItemsSource="{Binding Propertyes, Mode=TwoWay}" Name="items" Grid.Row="1">
+        <ItemsControl ItemsSource="{Binding Propertyes}" Name="items" Grid.Row="1">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
-                        <Label Content="{Binding Path=PropertyName,ConverterCulture='ru-RU'}"/>
+                        <Label Content="{Binding Path=PropertyName}"/>
                         <TextBox HorizontalAlignment="Stretch" Text="{Binding Path=Value}" Margin="5,0,5,0"/>
                     </StackPanel>
                 </DataTemplate>

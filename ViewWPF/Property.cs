@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace ViewWPF
@@ -36,11 +32,7 @@ namespace ViewWPF
         {
             get
             {
-                if (PropertyInfo.GetValue(Source) == null)
-                {
-                    return "";
-                }
-                return PropertyInfo.GetValue(Source);
+                return PropertyInfo.GetValue(Source) ?? "";
             }
             set
             {

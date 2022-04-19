@@ -91,28 +91,20 @@ namespace ViewWPF
                 switch (_selectedTypeOFEdition.Name)
                 {
                     case nameof(Book):
-                        {
-                            SelectedEdition = new Book();
-                            break;
-                        }
+                        SelectedEdition = new Book();
+                        break;
                     case nameof(Collection):
-                        {
-                            SelectedEdition = new Collection();
-                            break;
-                        }
+                        SelectedEdition = new Collection();
+                        break;
                     case nameof(Magazine):
-                        {
-                            SelectedEdition = new Magazine("Вопросы", "Научный журнал", "ООО 'Редация'",
-                    "Москва", "А.А. Искендеров", "2011", "518");
-                            break;
-                        }
+                        SelectedEdition = new Magazine("Вопросы", "Научный журнал", "ООО 'Редация'",
+                            "Москва", "А.А. Искендеров", "2011", "518");
+                        break;
                     case nameof(Thesis):
-                        {
-                            SelectedEdition = new Thesis();
-                            break;
-                        }
+                        SelectedEdition = new Thesis();
+                        break;
                 }
-                OnPropertyChanged("SelectedTypeOFEdition");
+                //OnPropertyChanged("SelectedTypeOFEdition");
                 OnPropertyChanged("Propertyes");
             }
         }
@@ -123,7 +115,6 @@ namespace ViewWPF
         public AddObject()
         {          
             InitializeComponent();
-            DataContext = this;
             ListNameClass =new List<Type>();
             ListNameClass = Assembly.GetAssembly(typeof(EditionBase))
                 .GetTypes().Where(type => type.IsSubclassOf(typeof(EditionBase)));
