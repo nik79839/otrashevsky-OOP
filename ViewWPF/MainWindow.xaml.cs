@@ -14,6 +14,7 @@ namespace ViewWPF
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        //TODO: VM
         /// <summary>
         /// Список с изданиями
         /// </summary>
@@ -34,14 +35,12 @@ namespace ViewWPF
         /// </summary>
         public string SearchText
         {
-            get
-            {
-                return _searchText;
-            }
+            get => _searchText;
             set
             {
                 _searchText = value;
                 //OnPropertyChanged("SearchText");
+                //TODO:nameof
                 OnPropertyChanged("EditionBases");
             }
         }
@@ -59,6 +58,7 @@ namespace ViewWPF
                 }
                 else
                 {
+                    //TODO: RSDN
                     ObservableCollection<EditionBase> _editionBases1 = new ObservableCollection<EditionBase>(
                         _editionBases.Where(x => x.Info.ToLower().Contains(SearchText.ToLower())));
                     return _editionBases1;
@@ -67,6 +67,7 @@ namespace ViewWPF
             set
             {
                 _editionBases = value;
+                //TODO:nameof
                 OnPropertyChanged("EditionBases");
             }
         }
@@ -99,8 +100,10 @@ namespace ViewWPF
         /// </summary>
         private void SaveMenu_Click(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "XML приложения (.xml) | * .xml";
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "XML приложения (.xml) | * .xml"
+            };
             if (saveFileDialog.ShowDialog()==false)
             {
                 return;
@@ -122,8 +125,10 @@ namespace ViewWPF
         /// </summary>
         private void OpenMenu_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "XML приложения (.xml) | * .xml";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "XML приложения (.xml) | * .xml"
+            };
             if (openFileDialog.ShowDialog() == false)
             {
                 return;
@@ -158,6 +163,7 @@ namespace ViewWPF
         /// </summary>
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
+            //TODO: {}
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }

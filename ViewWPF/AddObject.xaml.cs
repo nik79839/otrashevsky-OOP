@@ -13,8 +13,10 @@ namespace ViewWPF
     /// <summary>
     /// Логика взаимодействия для AddObject.xaml
     /// </summary>
-    public partial class AddObject : Window,INotifyPropertyChanged
+    public partial class AddObject : Window, INotifyPropertyChanged
     {
+        //TODO: VM
+
         /// <summary>
         /// Выбранный тип в combobox
         /// </summary>
@@ -56,6 +58,7 @@ namespace ViewWPF
             set
             {
                 _propertyes = value;
+                //TODO:nameof
                 OnPropertyChanged("Propertyes");
             }
         }
@@ -65,13 +68,11 @@ namespace ViewWPF
         /// </summary>
         public IEnumerable<Type> ListNameClass
         {
-            get
-            {
-                return _listNameClass;
-            }
+            get => _listNameClass;
             set
             {
                 _listNameClass = value;
+                //TODO:nameof
                 OnPropertyChanged("ListNameClass");
             }
         }
@@ -81,10 +82,7 @@ namespace ViewWPF
         /// </summary>
         public Type SelectedTypeOFEdition
         {
-            get
-            {
-                return _selectedTypeOFEdition;
-            }
+            get => _selectedTypeOFEdition;
             set
             {
                 _selectedTypeOFEdition = value;
@@ -105,6 +103,7 @@ namespace ViewWPF
                         break;
                 }
                 //OnPropertyChanged("SelectedTypeOFEdition");
+                //TODO: nameof
                 OnPropertyChanged("Propertyes");
             }
         }
@@ -130,6 +129,7 @@ namespace ViewWPF
             var propertyInfo = new List<PropertyInfo>();
             foreach (var info in editionBase.GetType().GetProperties())
             {
+                //TODO: Item?
                 if (info.Name == nameof(EditionBase.Info) || info.Name == "Item")
                 {
                     continue;
@@ -150,9 +150,10 @@ namespace ViewWPF
                 {                  
                     property.Value = "";
                 }
+
                 if (property.PropertyInfo.GetValue(property.Source) == null) return;
             }
-            this.DialogResult=true;
+            this.DialogResult = true;
         }
 
         /// <summary>
@@ -165,6 +166,7 @@ namespace ViewWPF
         /// </summary>
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
+            //TODO: {}
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }

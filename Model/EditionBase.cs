@@ -148,9 +148,7 @@ namespace Model
         private string CheckValueOnLimits(string value,int minimum,int maximum)
         {
             CheckEmpty(value);
-            //TODO: duplication
             string pattern = @"^[0-9]*$";
-            //TODO:
             if (!Regex.IsMatch(value, pattern))
             {
                 throw new ArgumentException("Value must only contain numbers");
@@ -162,9 +160,7 @@ namespace Model
             }
             return value;
         }
-
-
-        //TODO: В свойство
+        
         /// <summary>
         /// Info about edition
         /// </summary>

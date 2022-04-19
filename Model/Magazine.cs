@@ -83,23 +83,10 @@ namespace Model
         }
 
         /// <summary>
-		/// Конструктор класса для сериализации
-		/// </summary>
-		public Magazine()
-        {
-        }
-
-        //TODO: XML
-        /// <summary>
         /// Information
         /// </summary>
-        public override string Info
-        {
-            get
-            {
-                return $"{Name}: {Type} / учредитель {Founder}; ред. {MainEditor}. - {Place}" +
-                $", {Year}. - {PageCount} с.";
-            }
-        }
+        public override string Info =>
+            $"{Name}: {Type} / учредитель {Founder}; ред. {MainEditor}. - {Place}" +
+            $", {Year}. - {PageCount} с.";
     }
 }
