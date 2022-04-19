@@ -115,7 +115,7 @@ namespace ViewWPF
             {
                 MessageBox.Show(exception.Message + "Please do it again");
             }
-}
+        }
 
         /// <summary>
         /// При нажатии кнопки сохранения файла

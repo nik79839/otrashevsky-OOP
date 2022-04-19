@@ -10,6 +10,9 @@ using System.Xml.Serialization;
 
 namespace ViewWPF
 {
+	/// <summary>
+	/// Класс для сериализации и десереализации
+	/// </summary>
     public class Serializer
     {
 		// <summary>
