@@ -3,10 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ViewWPF"
+        xmlns:local="clr-namespace:ViewWPF" xmlns:viewmodel="clr-namespace:ViewWPF.ViewModel"
         mc:Ignorable="d"
-        DataContext="{Binding RelativeSource={RelativeSource Self}}"
-        Title="MainWindow" Height="500" Width="600">
+        Title="MainWindow" Height="500" Width="600"
+        d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowVM}"
+        xmlns:uc="clr-namespace:ViewWPF">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>
@@ -23,12 +24,12 @@
         </GroupBox>
         <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Stretch">
             <MenuItem Header="File">
-                <MenuItem Header="Open" Click="OpenMenu_Click"/>
-                <MenuItem Header="Save" Click="SaveMenu_Click"/>
+                <MenuItem Header="Open" Command="{Binding OpenCommand}" />
+                <MenuItem Header="Save" Command="{Binding SaveCommand}"/>
             </MenuItem>
             <MenuItem Header="Edit">
-                <MenuItem Header="Add object" Click="AddObjectButton_Click"/>
-                <MenuItem Header="Remove object" Click="RemoveObjectButton_Click"/>
+                <MenuItem Header="Add object" Command="{Binding AddObjectCommand}"/>
+                <MenuItem Header="Remove object" Command="{Binding RemoveObjectCommand}"/>
             </MenuItem>
         </Menu>
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,3,0">

@@ -1,29 +1,26 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using Model;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
-using Microsoft.Win32;
-using Model;
+using System.Windows.Input;
+using ViewWPF.Command;
 
-namespace ViewWPF
+namespace ViewWPF.ViewModel
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public class MainWindowVM : ViewModelBase
     {
         //TODO: VM
         /// <summary>
         /// Список с изданиями
         /// </summary>
         private ObservableCollection<EditionBase> _editionBases;
-
-        /// <summary>
-        /// Переменная для фильтрации изданий
-        /// </summary>
-        private string _searchText;
 
         /// <summary>
         /// Выбранный элемент listbox
@@ -33,18 +30,9 @@ namespace ViewWPF
         /// <summary>
         /// Свойство для фильтрации изданий
         /// </summary>
-        public string SearchText
-        {
-            get => _searchText;
-            set
-            {
-                _searchText = value;
-                //OnPropertyChanged("SearchText");
+        public string SearchText { get; set; }
                 //TODO:nameof
-                OnPropertyChanged("EditionBases");
-            }
-        }
-
+        
         /// <summary>
         /// Список изданий
         /// </summary>
@@ -59,52 +47,38 @@ namespace ViewWPF
                 else
                 {
                     //TODO: RSDN
-                    ObservableCollection<EditionBase> _editionBases1 = new ObservableCollection<EditionBase>(
-                        _editionBases.Where(x => x.Info.ToLower().Contains(SearchText.ToLower())));
+                    ObservableCollection<EditionBase> _editionBases1 =
+                        new ObservableCollection<EditionBase>(_editionBases.Where(
+                            x => x.Info.ToLower().Contains(SearchText.ToLower())));
                     return _editionBases1;
                 }
             }
             set
             {
                 _editionBases = value;
-                //TODO:nameof
-                OnPropertyChanged("EditionBases");
             }
         }
 
         /// <summary>
         /// При иннициализации формы
         /// </summary>
-        public MainWindow()
+        public MainWindowVM()
         {
-            InitializeComponent();
             Book book1 = new Book("Филиппова А.Г", "История", "учебное пособие",
                 "Москва", "Юнион", "2011", "126");
             EditionBases = new ObservableCollection<EditionBase>() { book1 };
         }
 
         /// <summary>
-        /// При нажатии на кнопку добавления элемента
-        /// </summary>
-        private void AddObjectButton_Click(object sender, RoutedEventArgs e)
-        {
-            AddObject addObjectWindow=new AddObject();
-            if (addObjectWindow.ShowDialog()==true)
-            {
-                EditionBases.Add(addObjectWindow.SelectedEdition);
-            }
-        }
-
-        /// <summary>
         /// При нажатии на кнопку сохранения
         /// </summary>
-        private void SaveMenu_Click(object sender, RoutedEventArgs e)
+        private void SaveFile()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
                 Filter = "XML приложения (.xml) | * .xml"
             };
-            if (saveFileDialog.ShowDialog()==false)
+            if (saveFileDialog.ShowDialog() == false)
             {
                 return;
             }
@@ -116,14 +90,14 @@ namespace ViewWPF
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.Message + "Please do it again");
+                MessageBox.Show(exception.Message + " Please do it again");
             }
         }
 
         /// <summary>
-        /// При нажатии кнопки сохранения файла
+        /// При нажатии кнопки открытия файла
         /// </summary>
-        private void OpenMenu_Click(object sender, RoutedEventArgs e)
+        private void OpenFile()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
@@ -143,29 +117,58 @@ namespace ViewWPF
             {
                 MessageBox.Show(exception.Message + "Incorrect file format");
             }
+        }       
+
+        /// <summary>
+        /// При нажатии на кнопку добавления элемента
+        /// </summary>
+        private void AddObject()
+        {
+            AddObject addObjectWindow = new AddObject();
+            AddObjectVM addObjectVM = new AddObjectVM();
+            addObjectWindow.DataContext = addObjectVM;
+            if (addObjectWindow.ShowDialog() == true)
+            {
+                if (addObjectVM.SelectedEdition != null)
+                {
+                    EditionBases.Add(addObjectVM.SelectedEdition);
+                }
+            }
         }
 
-        /// <summary>
-        /// При нажатии кнопки удаления
-        /// </summary>
-        private void RemoveObjectButton_Click(object sender, RoutedEventArgs e)
+        public RelayCommand AddObjectCommand
         {
-            EditionBases.Remove(SelectionEditionBase);
+            get
+            {
+                return new RelayCommand(obj => AddObject());
+            }
         }
 
-        /// <summary>
-        /// Событие изменения свойства
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Уведомление об изменении свойства
-        /// </summary>
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        public RelayCommand RemoveObjectCommand
         {
-            //TODO: {}
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            get
+            {
+                return new RelayCommand(obj =>
+                {
+                    EditionBases.Remove(SelectionEditionBase);
+                });
+            }
+        }
+
+        public RelayCommand SaveCommand
+        {
+            get
+            {
+                return new RelayCommand(obj => SaveFile());
+            }
+        }
+
+        public RelayCommand OpenCommand
+        {
+            get
+            {
+                return new RelayCommand(obj => OpenFile());
+            }
         }
     }
 }

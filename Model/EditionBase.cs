@@ -114,7 +114,6 @@ namespace Model
         /// </summary>
         /// <param name="value">value</param>
         /// //TODO: XML
-        /// <param name="name">name of value</param>
         /// <returns>value</returns>
         /// <exception cref="ArgumentException"></exception>
         protected string CheckEmpty(string value)
