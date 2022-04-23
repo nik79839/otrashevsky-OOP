@@ -74,12 +74,19 @@ namespace Model
 		/// <param name="year">year</param>
 		/// <param name="pageCount">count of pages</param>
 		public Magazine(string name, string type, string founder, string place,
-            string mainEditor, string year, string pageCount)
+            string mainEditor, int year, int pageCount)
             :base(name, place, year, pageCount)
         {
             Type = type;
             Founder = founder;
             MainEditor = mainEditor;
+        }
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        protected Magazine()
+        {
         }
 
         /// <summary>

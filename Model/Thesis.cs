@@ -90,7 +90,7 @@ namespace Model
 		/// <param name="year">Год издания</param>
 		/// <param name="pageLimits">Количество страниц</param>
 		public Thesis(string author, string name, string type, string specialization, string place,
-			string university, string year, string pageCount)
+			string university, int year, int pageCount)
 			: base(name, place, year, pageCount)
 		{
 			Author = author;

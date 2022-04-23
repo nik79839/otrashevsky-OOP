@@ -49,7 +49,7 @@ namespace Model
 		/// <param name="year">year</param>
 		/// <param name="pageCount">page count</param>
 		public Collection(string name, string nameOfConference, string place,
-			string publisher, string year, string pageCount)
+			string publisher, int year, int pageCount)
 			: base(name, place, year, pageCount)
 		{
 			NameOfConference = nameOfConference;

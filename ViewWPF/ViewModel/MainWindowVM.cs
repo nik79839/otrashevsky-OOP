@@ -65,7 +65,7 @@ namespace ViewWPF.ViewModel
         public MainWindowVM()
         {
             Book book1 = new Book("Филиппова А.Г", "История", "учебное пособие",
-                "Москва", "Юнион", "2011", "126");
+                "Москва", "Юнион", 2011, 126);
             EditionBases = new ObservableCollection<EditionBase>() { book1 };
         }
 
@@ -90,9 +90,9 @@ namespace ViewWPF.ViewModel
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.Message + " Please do it again");
+                MessageBox.Show(exception.GetBaseException().Message + " Please do it again");
             }
-        }
+}
 
         /// <summary>
         /// При нажатии кнопки открытия файла
@@ -115,7 +115,7 @@ namespace ViewWPF.ViewModel
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.Message + "Incorrect file format");
+                MessageBox.Show(exception.GetBaseException().Message + " Incorrect file format");
             }
         }       
 
@@ -127,12 +127,9 @@ namespace ViewWPF.ViewModel
             AddObject addObjectWindow = new AddObject();
             AddObjectVM addObjectVM = new AddObjectVM();
             addObjectWindow.DataContext = addObjectVM;
-            if (addObjectWindow.ShowDialog() == true)
+            if (addObjectWindow.ShowDialog() == true && addObjectVM.SelectedEdition != null)
             {
-                if (addObjectVM.SelectedEdition != null)
-                {
-                    EditionBases.Add(addObjectVM.SelectedEdition);
-                }
+                EditionBases.Add(addObjectVM.SelectedEdition);
             }
         }
 

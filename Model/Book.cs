@@ -77,7 +77,7 @@ namespace Model
         /// <param name="year">year</param>
         /// <param name="pageCount">count of pages</param>
         public Book(string mainAuthor, string name, string type, string place,
-            string publisher, string year, string pageCount)
+            string publisher, int year, int pageCount)
             : base(name, place, year, pageCount)
         {
             MainAuthor = mainAuthor;

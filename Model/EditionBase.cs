@@ -26,12 +26,12 @@ namespace Model
         /// <summary>
         /// Year of publication
         /// </summary>
-        private string _year;
+        private int _year;
 
         /// <summary>
         /// Count of pages
         /// </summary>
-        private string _pageCount;
+        private int _pageCount;
 
         /// <summary>
         /// Name of edition
@@ -64,12 +64,12 @@ namespace Model
         /// <summary>
         /// Year of publication
         /// </summary>
-        public string Year
+        public int Year
         {
             get => _year;
             set
             {
-                CheckValueOnLimits(value,0,DateTime.Now.Year);
+                CheckValueOnLimits(value,1,DateTime.Now.Year);
                 _year = value;
             }
         }
@@ -77,7 +77,7 @@ namespace Model
         /// <summary>
         /// Count of pages
         /// </summary>
-        public string PageCount
+        public int PageCount
         {
             get => _pageCount;
             set
@@ -94,7 +94,7 @@ namespace Model
         /// <param name="place">Place</param>
         /// <param name="year">Year</param>
         /// <param name="pageCount">Count of page</param>
-        protected EditionBase(string name, string place, string year, string pageCount)
+        protected EditionBase(string name, string place, int year, int pageCount)
         {
             Name = name;
             Place = place;
@@ -103,7 +103,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Constructor
+        /// Default constructor
         /// </summary>
         protected EditionBase()
         {
@@ -144,15 +144,15 @@ namespace Model
             }
         }
 
-        private string CheckValueOnLimits(string value,int minimum,int maximum)
+        private int CheckValueOnLimits(int value,int minimum,int maximum)
         {
-            CheckEmpty(value);
+            //CheckEmpty(value);
             string pattern = @"^[0-9]*$";
-            if (!Regex.IsMatch(value, pattern))
+            /*if (!Regex.IsMatch(value, pattern))
             {
                 throw new ArgumentException("Value must only contain numbers");
-            }
-            if (Convert.ToInt32(value) > maximum || Convert.ToInt32(value) < minimum)
+            }*/
+            if (value > maximum || value < minimum)
             {
                 throw new ArgumentException($"Value should be " +
                     $"between {minimum} and {maximum}");

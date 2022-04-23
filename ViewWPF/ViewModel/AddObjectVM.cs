@@ -79,7 +79,7 @@ namespace ViewWPF.ViewModel
                         break;
                     case nameof(Magazine):
                         SelectedEdition = new Magazine("Вопросы", "Научный журнал", "ООО 'Редация'",
-                            "Москва", "А.А. Искендеров", "2011", "518");
+                            "Москва", "А.А. Искендеров", 2011, 518);
                         break;
                     case nameof(Thesis):
                         SelectedEdition = new Thesis();
@@ -128,11 +128,8 @@ namespace ViewWPF.ViewModel
         {
             foreach (var property in Propertyes)
             {
-                if (property.Value.ToString() == "")
-                {
-                    property.Value = "";
-                }
-                if (property.PropertyInfo.GetValue(property.Source) == null)
+                property.Value = property.Value;
+                if (property.PropertyInfo.GetValue(property.Source) == null || property.Value.ToString()=="0")
                 {
                     SelectedEdition = null;
                     return;
@@ -157,11 +154,13 @@ namespace ViewWPF.ViewModel
                     foreach (var property in Propertyes)
                     {
                         //MessageBox.Show()
-                        /*if (property.PropertyInfo.PropertyType==typeof(string))
+                        if (property.PropertyInfo.PropertyType == typeof(string))
                         {
-                            property.Value = "Random" + property.PropertyName;
-                        }*/
+                            
+                            property.Value = "Random " + property.PropertyName;
+                        }
                     }
+                    OnPropertyChanged("Propertyes");
                 });
             }
         }

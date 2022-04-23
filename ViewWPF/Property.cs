@@ -38,11 +38,18 @@ namespace ViewWPF
             {
                 try
                 {
-                    PropertyInfo.SetValue(Source, value);
+                    if (PropertyInfo.PropertyType == typeof(int))
+                    {
+                        PropertyInfo.SetValue(Source, Convert.ToInt32(value));
+                    }
+                    else
+                    {
+                        PropertyInfo.SetValue(Source, value);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(PropertyName+"\n " + ex.InnerException.Message,"",
+                    MessageBox.Show(PropertyName+"\n " + ex.GetBaseException().Message,"",
                         MessageBoxButton.OK,MessageBoxImage.Error);
                 }
             }
