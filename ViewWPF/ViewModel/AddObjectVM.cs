@@ -93,8 +93,8 @@ namespace ViewWPF.ViewModel
                         SelectedEdition = new Collection();
                         break;
                     case nameof(Magazine):
-                        SelectedEdition = new Magazine("Вопросы", "Научный журнал", "ООО 'Редация'",
-                            "Москва", "А.А. Искендеров", 2011, 518);
+                        SelectedEdition = new Magazine("Вопросы", "Научный журнал",
+                            "ООО 'Редация'", "Москва", "А.А. Искендеров", 2011, 518);
                         break;
                     case nameof(Thesis):
                         SelectedEdition = new Thesis();

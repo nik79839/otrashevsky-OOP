@@ -83,7 +83,8 @@ namespace ViewWPF.ViewModel
             SaveCommand = new RelayCommand(obj => SaveFile());
             OpenCommand = new RelayCommand(obj => OpenFile());
             AddObjectCommand=new RelayCommand(obj => AddObject());
-            RemoveObjectCommand = new RelayCommand(obj => EditionBases.Remove(SelectionEditionBase));
+            RemoveObjectCommand = new RelayCommand(obj => EditionBases.
+                Remove(SelectionEditionBase));
         }
 
         /// <summary>
@@ -107,7 +108,8 @@ namespace ViewWPF.ViewModel
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.GetBaseException().Message + " Please do it again");
+                MessageBox.Show(exception.GetBaseException().Message + 
+                    " Please do it again");
             }
 }
 
@@ -132,7 +134,8 @@ namespace ViewWPF.ViewModel
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.GetBaseException().Message + " Incorrect file format");
+                MessageBox.Show(exception.GetBaseException().Message + 
+                    " Incorrect file format");
             }
         }       
 
