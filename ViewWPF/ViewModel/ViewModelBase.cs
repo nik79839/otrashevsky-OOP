@@ -23,11 +23,7 @@ namespace ViewWPF.ViewModel
         /// </summary>
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
-            //TODO: {}
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

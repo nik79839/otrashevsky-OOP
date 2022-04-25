@@ -7,6 +7,7 @@ using System.Windows.Input;
 
 namespace ViewWPF.Command
 {
+    //TODO: XML
     public class RelayCommand : ICommand
     {
         private Action<object> execute;

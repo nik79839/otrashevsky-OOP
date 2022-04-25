@@ -11,8 +11,10 @@ using ViewWPF.Command;
 
 namespace ViewWPF.ViewModel
 {
+    //TODO: XML
     public class AddObjectVM : ViewModelBase
     {
+        //TODO: RSDN
         /// <summary>
         /// Выбранный тип в combobox
         /// </summary>
@@ -28,6 +30,7 @@ namespace ViewWPF.ViewModel
         /// </summary>
         private AddObject _view;
 
+        //TODO: RSDN
         /// <summary>
         /// Экземпляр издания
         /// </summary>
@@ -60,18 +63,18 @@ namespace ViewWPF.ViewModel
         {
             get
             {
-                    object source = SelectedEdition;
-                    _propertyes = new ObservableCollection<Property>();
-                    foreach (var pi in PropertyInfo(source))
-                    {
-                        _propertyes.Add(new Property(source, pi));
-                    }
+                object source = SelectedEdition;
+                _propertyes = new ObservableCollection<Property>();
+                foreach (var pi in PropertyInfo(source))
+                {
+                    _propertyes.Add(new Property(source, pi));
+                }
+
                 return _propertyes;
             }
             set
             {
                 _propertyes = value;
-                //TODO:nameof
             }
         }
 
@@ -100,7 +103,6 @@ namespace ViewWPF.ViewModel
                         SelectedEdition = new Thesis();
                         break;
                 }
-                //TODO: nameof
             }
         }
 
@@ -125,9 +127,9 @@ namespace ViewWPF.ViewModel
 
         public EditionBase ShowDialog()
         {
-            if (_view.ShowDialog() == true)
-                return SelectedEdition;
-            return null;
+            return _view.ShowDialog() == true 
+                ? SelectedEdition 
+                : null;
         }
 
         /// <summary>
@@ -140,7 +142,6 @@ namespace ViewWPF.ViewModel
             var propertyInfo = new List<PropertyInfo>();
             foreach (var info in editionBase.GetType().GetProperties())
             {
-                //TODO: Item?
                 if (info.Name == nameof(EditionBase.Info))
                 {
                     continue;

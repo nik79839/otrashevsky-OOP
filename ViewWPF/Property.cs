@@ -49,14 +49,11 @@ namespace ViewWPF
             {
                 try
                 {
-                    if (PropertyInfo.PropertyType == typeof(int))
-                    {
-                        PropertyInfo.SetValue(Source, Convert.ToInt32(value));
-                    }
-                    else
-                    {
-                        PropertyInfo.SetValue(Source, value);
-                    }
+                    PropertyInfo.SetValue(Source,
+                        PropertyInfo.PropertyType == typeof(int) 
+                            ? Convert.ToInt32(value) 
+                            : value
+                            );
                 }
                 catch (Exception ex)
                 {
@@ -75,6 +72,7 @@ namespace ViewWPF
         {
             Source = source;
             PropertyInfo = propertyInfo;
+            //TODO: RSDN
             PropertyName = propertyInfo.Name.Substring(0,1)+Regex.Replace(
                 propertyInfo.Name.Substring(1),@"([A-Z])", " $1").Trim().ToLower();
         }

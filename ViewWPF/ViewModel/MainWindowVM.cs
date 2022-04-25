@@ -8,9 +8,9 @@ using ViewWPF.Command;
 
 namespace ViewWPF.ViewModel
 {
+    //TODO: XML
     public class MainWindowVM : ViewModelBase
     {
-        //TODO: VM
         /// <summary>
         /// Список с изданиями
         /// </summary>
