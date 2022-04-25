@@ -15,7 +15,7 @@
         <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
             <ComboBox Name="combo" ItemsSource="{Binding ListNameClass}" DisplayMemberPath="Name" HorizontalAlignment="Center" SelectedIndex="0"
                       SelectedItem="{Binding SelectedTypeOFEdition}" Margin="0,0,5,0"/>
-            <Button IsDefault="True" Content="Ok" Command="{Binding OkCommand}" Margin="5,0,5,0" Padding="5,5,5,5" Click="OkButton_Click"/>
+            <Button IsDefault="True" Content="Ok" Command="{Binding OkCommand}" Margin="5,0,5,0" Padding="5,5,5,5"/>
             <Button IsCancel="True" Content="Cancel" Margin="5,0,5,0" Padding="5,5,5,5"/>
             <Button Content="Random" Command="{Binding RandomDataCommand}" Margin="5,0,5,0" Padding="5,5,5,5"/>
         </StackPanel>

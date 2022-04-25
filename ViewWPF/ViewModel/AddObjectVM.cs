@@ -24,6 +24,11 @@ namespace ViewWPF.ViewModel
         private ObservableCollection<Property> _propertyes;
 
         /// <summary>
+        /// View
+        /// </summary>
+        private AddObject _view;
+
+        /// <summary>
         /// Экземпляр издания
         /// </summary>
         public EditionBase SelectedEdition { get; set; }
@@ -89,12 +94,20 @@ namespace ViewWPF.ViewModel
         /// </summary>
         public AddObjectVM()
         {
-            ListNameClass = new List<Type>();
             ListNameClass = Assembly.GetAssembly(typeof(EditionBase))
                 .GetTypes().Where(type => type.IsSubclassOf(typeof(EditionBase))).ToList();
             SelectedTypeOFEdition = ListNameClass[0];
             OkCommand = new RelayCommand(obj => OkButton());
             RandomDataCommand = new RelayCommand(obj => RamdomData());
+            _view = new AddObject();
+            _view.DataContext = this;
+        }
+
+        public EditionBase ShowDialog()
+        {
+            if (_view.ShowDialog() == true)
+                return SelectedEdition;
+            return null;
         }
 
         /// <summary>
@@ -108,7 +121,7 @@ namespace ViewWPF.ViewModel
             foreach (var info in editionBase.GetType().GetProperties())
             {
                 //TODO: Item?
-                if (info.Name == nameof(EditionBase.Info) || info.Name == "Item")
+                if (info.Name == nameof(EditionBase.Info))
                 {
                     continue;
                 }
@@ -127,10 +140,10 @@ namespace ViewWPF.ViewModel
                 property.Value = property.Value;
                 if (property.PropertyInfo.GetValue(property.Source) == null || property.Value.ToString()=="0")
                 {
-                    SelectedEdition = null;
                     return;
                 }
             }
+            _view.DialogResult = true;
         }
 
         /// <summary>

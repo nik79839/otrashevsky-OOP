@@ -122,10 +122,8 @@ namespace ViewWPF.ViewModel
         /// </summary>
         private void AddObject()
         {
-            AddObject addObjectWindow = new AddObject();
             AddObjectVM addObjectVM = new AddObjectVM();
-            addObjectWindow.DataContext = addObjectVM;
-            if (addObjectWindow.ShowDialog() == true && addObjectVM.SelectedEdition != null)
+            if (addObjectVM.ShowDialog() != null)
             {
                 EditionBases.Add(addObjectVM.SelectedEdition);
             }

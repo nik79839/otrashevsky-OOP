@@ -82,7 +82,7 @@ namespace Model
             get => _pageCount;
             set
             {
-                CheckValueOnLimits(value, 0, 100000);
+                CheckValueOnLimits(value, 1, 100000);
                 _pageCount = value;
             }
         }
