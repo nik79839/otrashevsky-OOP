@@ -44,12 +44,12 @@ namespace ViewWPF.ViewModel
         public List<Type> ListNameClass { get; set; }
 
         /// <summary>
-        /// Command in case of click Ok button
+        /// Команда при нажатии кнопки "Ок"
         /// </summary>
         public RelayCommand OkCommand { get; }
 
         /// <summary>
-        /// Command for add random data
+        /// Команда для создания случайного объекта
         /// </summary>
         public RelayCommand RandomDataCommand { get; }
 

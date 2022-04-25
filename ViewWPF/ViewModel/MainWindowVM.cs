@@ -27,22 +27,22 @@ namespace ViewWPF.ViewModel
         public string SearchText { get; set; }
 
         /// <summary>
-        /// Command to open addobject window
+        /// Команда открытия окна для добавления объекта
         /// </summary>
         public RelayCommand AddObjectCommand { get; }
 
         /// <summary>
-        /// Command to remove object
+        /// Команда удаления объекта
         /// </summary>
         public RelayCommand RemoveObjectCommand { get; }
 
         /// <summary>
-        /// Command to save
+        /// Команда сохранения в файл
         /// </summary>
         public RelayCommand SaveCommand { get; }
 
         /// <summary>
-        /// Command to open
+        /// Команжа открытия файла
         /// </summary>
         public RelayCommand OpenCommand { get; }
 
