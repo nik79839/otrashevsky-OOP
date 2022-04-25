@@ -25,8 +25,27 @@ namespace ViewWPF.ViewModel
         /// Свойство для фильтрации изданий
         /// </summary>
         public string SearchText { get; set; }
-                //TODO:nameof
-        
+
+        /// <summary>
+        /// Command to open addobject window
+        /// </summary>
+        public RelayCommand AddObjectCommand { get; }
+
+        /// <summary>
+        /// Command to remove object
+        /// </summary>
+        public RelayCommand RemoveObjectCommand { get; }
+
+        /// <summary>
+        /// Command to save
+        /// </summary>
+        public RelayCommand SaveCommand { get; }
+
+        /// <summary>
+        /// Command to open
+        /// </summary>
+        public RelayCommand OpenCommand { get; }
+
         /// <summary>
         /// Список изданий
         /// </summary>
@@ -128,13 +147,5 @@ namespace ViewWPF.ViewModel
                 EditionBases.Add(addObjectVM.SelectedEdition);
             }
         }
-
-        public RelayCommand AddObjectCommand { get;}
-
-        public RelayCommand RemoveObjectCommand { get; }
-
-        public RelayCommand SaveCommand { get; }
-
-        public RelayCommand OpenCommand { get; }
     }
 }

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace ViewWPF.ViewModel
 {
+    /// <summary>
+    /// Абстрактный класс, реализующий INotifyPropertyChanged
+    /// </summary>
     public abstract class ViewModelBase: INotifyPropertyChanged
     {
         /// <summary>

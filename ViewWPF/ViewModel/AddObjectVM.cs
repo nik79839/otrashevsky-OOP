@@ -31,12 +31,27 @@ namespace ViewWPF.ViewModel
         /// <summary>
         /// Экземпляр издания
         /// </summary>
+        public bool isVisibleRandomButton { get; set; }
+
+        /// <summary>
+        /// Экземпляр издания
+        /// </summary>
         public EditionBase SelectedEdition { get; set; }
 
         /// <summary>
         /// Список подтипов класса EditionBase
         /// </summary>
         public List<Type> ListNameClass { get; set; }
+
+        /// <summary>
+        /// Command in case of click Ok button
+        /// </summary>
+        public RelayCommand OkCommand { get; }
+
+        /// <summary>
+        /// Command for add random data
+        /// </summary>
+        public RelayCommand RandomDataCommand { get; }
 
         /// <summary>
         /// Список открытых свойств класса
@@ -99,6 +114,11 @@ namespace ViewWPF.ViewModel
             SelectedTypeOFEdition = ListNameClass[0];
             OkCommand = new RelayCommand(obj => OkButton());
             RandomDataCommand = new RelayCommand(obj => RamdomData());
+#if (DEBUG)
+            isVisibleRandomButton = true;
+#else
+            isVisibleRandomButton = false;
+#endif
             _view = new AddObject();
             _view.DataContext = this;
         }
@@ -138,7 +158,8 @@ namespace ViewWPF.ViewModel
             foreach (var property in Propertyes)
             {
                 property.Value = property.Value;
-                if (property.PropertyInfo.GetValue(property.Source) == null || property.Value.ToString()=="0")
+                if (property.PropertyInfo.GetValue(property.Source) == null ||
+                    property.PropertyInfo.GetValue(property.Source).ToString()=="0")
                 {
                     return;
                 }
@@ -163,9 +184,5 @@ namespace ViewWPF.ViewModel
             SelectedEdition.PageCount = random.Next(1, 10000);
             OnPropertyChanged(nameof(Propertyes));
         }
-
-        public RelayCommand OkCommand { get; }
-
-        public RelayCommand RandomDataCommand { get; }
     }
 }

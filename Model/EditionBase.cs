@@ -144,14 +144,16 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Check value on limits
+        /// </summary>
+        /// <param name="value">value</param>
+        /// <param name="minimum">minimum</param>
+        /// <param name="maximum">maximum</param>
+        /// <returns>value</returns>
+        /// <exception cref="ArgumentException"></exception>
         private int CheckValueOnLimits(int value,int minimum,int maximum)
         {
-            //CheckEmpty(value);
-            string pattern = @"^[0-9]*$";
-            /*if (!Regex.IsMatch(value, pattern))
-            {
-                throw new ArgumentException("Value must only contain numbers");
-            }*/
             if (value > maximum || value < minimum)
             {
                 throw new ArgumentException($"Value should be " +

@@ -32,7 +32,18 @@ namespace ViewWPF
         {
             get
             {
-                return PropertyInfo.GetValue(Source) ?? "";
+                if (PropertyInfo.GetValue(Source) == null)
+                {
+                    return "";
+                }
+                else
+                {
+                    if (PropertyInfo.GetValue(Source).ToString() == "0")
+                    {
+                        return "";
+                    }
+                    return PropertyInfo.GetValue(Source);
+                }
             }
             set
             {
