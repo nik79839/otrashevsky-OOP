@@ -23,12 +23,15 @@ namespace ViewWPF.ViewModel
         /// </summary>
         private ObservableCollection<Property> _propertyes;
 
-        //private readonly MainWindowVM addObjectWindow = new MainWindowVM();
-
         /// <summary>
         /// Экземпляр издания
         /// </summary>
         public EditionBase SelectedEdition { get; set; }
+
+        /// <summary>
+        /// Список подтипов класса EditionBase
+        /// </summary>
+        public List<Type> ListNameClass { get; set; }
 
         /// <summary>
         /// Список открытых свойств класса
@@ -37,15 +40,12 @@ namespace ViewWPF.ViewModel
         {
             get
             {
-                if (SelectedTypeOFEdition != null)
-                {
                     object source = SelectedEdition;
                     _propertyes = new ObservableCollection<Property>();
                     foreach (var pi in PropertyInfo(source))
                     {
                         _propertyes.Add(new Property(source, pi));
                     }
-                }
                 return _propertyes;
             }
             set
@@ -54,11 +54,6 @@ namespace ViewWPF.ViewModel
                 //TODO:nameof
             }
         }
-
-        /// <summary>
-        /// Список подтипов класса EditionBase
-        /// </summary>
-        public List<Type> ListNameClass { get; set; }
 
         /// <summary>
         /// Выбранный тип в combobox
@@ -98,7 +93,8 @@ namespace ViewWPF.ViewModel
             ListNameClass = Assembly.GetAssembly(typeof(EditionBase))
                 .GetTypes().Where(type => type.IsSubclassOf(typeof(EditionBase))).ToList();
             SelectedTypeOFEdition = ListNameClass[0];
-            //addObjectWindow.ShowDialog();
+            OkCommand = new RelayCommand(obj => OkButton());
+            RandomDataCommand = new RelayCommand(obj => RamdomData());
         }
 
         /// <summary>
@@ -137,32 +133,26 @@ namespace ViewWPF.ViewModel
             }
         }
 
-        public RelayCommand OkCommand
+        /// <summary>
+        /// Случайное заполнение полей объекта
+        /// </summary>
+        private void RamdomData()
         {
-            get
+            foreach (var property in Propertyes)
             {
-                return new RelayCommand(obj => OkButton());
+                if (property.PropertyInfo.PropertyType == typeof(string))
+                {
+                    property.Value = "Random " + property.PropertyName;
+                }
             }
+            Random random = new Random();
+            SelectedEdition.Year = random.Next(1, DateTime.Now.Year);
+            SelectedEdition.PageCount = random.Next(1, 10000);
+            OnPropertyChanged(nameof(Propertyes));
         }
 
-        public RelayCommand RandomDataCommand
-        {
-            get
-            {
-                return new RelayCommand(obj =>
-                {
-                    foreach (var property in Propertyes)
-                    {
-                        //MessageBox.Show()
-                        if (property.PropertyInfo.PropertyType == typeof(string))
-                        {
-                            
-                            property.Value = "Random " + property.PropertyName;
-                        }
-                    }
-                    OnPropertyChanged("Propertyes");
-                });
-            }
-        }
+        public RelayCommand OkCommand { get; }
+
+        public RelayCommand RandomDataCommand { get; }
     }
 }

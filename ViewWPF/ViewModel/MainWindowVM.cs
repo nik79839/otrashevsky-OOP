@@ -1,15 +1,9 @@
 ﻿using Microsoft.Win32;
 using Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 using ViewWPF.Command;
 
 namespace ViewWPF.ViewModel
@@ -67,6 +61,10 @@ namespace ViewWPF.ViewModel
             Book book1 = new Book("Филиппова А.Г", "История", "учебное пособие",
                 "Москва", "Юнион", 2011, 126);
             EditionBases = new ObservableCollection<EditionBase>() { book1 };
+            SaveCommand = new RelayCommand(obj => SaveFile());
+            OpenCommand = new RelayCommand(obj => OpenFile());
+            AddObjectCommand=new RelayCommand(obj => AddObject());
+            RemoveObjectCommand = new RelayCommand(obj => EditionBases.Remove(SelectionEditionBase));
         }
 
         /// <summary>
@@ -133,39 +131,12 @@ namespace ViewWPF.ViewModel
             }
         }
 
-        public RelayCommand AddObjectCommand
-        {
-            get
-            {
-                return new RelayCommand(obj => AddObject());
-            }
-        }
+        public RelayCommand AddObjectCommand { get;}
 
-        public RelayCommand RemoveObjectCommand
-        {
-            get
-            {
-                return new RelayCommand(obj =>
-                {
-                    EditionBases.Remove(SelectionEditionBase);
-                });
-            }
-        }
+        public RelayCommand RemoveObjectCommand { get; }
 
-        public RelayCommand SaveCommand
-        {
-            get
-            {
-                return new RelayCommand(obj => SaveFile());
-            }
-        }
+        public RelayCommand SaveCommand { get; }
 
-        public RelayCommand OpenCommand
-        {
-            get
-            {
-                return new RelayCommand(obj => OpenFile());
-            }
-        }
+        public RelayCommand OpenCommand { get; }
     }
 }
