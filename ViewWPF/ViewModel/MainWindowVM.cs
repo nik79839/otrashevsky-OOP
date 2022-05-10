@@ -9,6 +9,9 @@ using ViewWPF.Command;
 namespace ViewWPF.ViewModel
 {
     //TODO: XML
+    /// <summary>
+    /// ViewModel
+    /// </summary>
     public class MainWindowVM : ViewModelBase
     {
         /// <summary>
@@ -60,10 +63,8 @@ namespace ViewWPF.ViewModel
                 else
                 {
                     //TODO: RSDN
-                    ObservableCollection<EditionBase> _editionBases1 =
-                        new ObservableCollection<EditionBase>(_editionBases.Where(
+                    return new ObservableCollection<EditionBase>(_editionBases.Where(
                             x => x.Info.ToLower().Contains(SearchText.ToLower())));
-                    return _editionBases1;
                 }
             }
             set

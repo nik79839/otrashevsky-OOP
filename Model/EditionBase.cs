@@ -110,7 +110,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Check on empty or null string
+        /// Check on empty string
         /// </summary>
         /// <param name="value">value</param>
         /// //TODO: XML

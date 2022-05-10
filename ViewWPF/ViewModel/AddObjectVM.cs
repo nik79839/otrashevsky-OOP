@@ -12,13 +12,16 @@ using ViewWPF.Command;
 namespace ViewWPF.ViewModel
 {
     //TODO: XML
+    /// <summary>
+    /// ViewModel
+    /// </summary>
     public class AddObjectVM : ViewModelBase
     {
         //TODO: RSDN
         /// <summary>
         /// Выбранный тип в combobox
         /// </summary>
-        private Type _selectedTypeOFEdition;
+        private Type _selectedTypeOfEdition;
 
         /// <summary>
         /// Список открытых свойств класса
@@ -34,7 +37,7 @@ namespace ViewWPF.ViewModel
         /// <summary>
         /// Экземпляр издания
         /// </summary>
-        public bool isVisibleRandomButton { get; set; }
+        public bool IsVisibleRandomButton { get; set; }
 
         /// <summary>
         /// Экземпляр издания
@@ -83,11 +86,11 @@ namespace ViewWPF.ViewModel
         /// </summary>
         public Type SelectedTypeOFEdition
         {
-            get => _selectedTypeOFEdition;
+            get => _selectedTypeOfEdition;
             set
             {
-                _selectedTypeOFEdition = value;
-                switch (_selectedTypeOFEdition.Name)
+                _selectedTypeOfEdition = value;
+                switch (_selectedTypeOfEdition.Name)
                 {
                     case nameof(Book):
                         SelectedEdition = new Book();
@@ -117,7 +120,7 @@ namespace ViewWPF.ViewModel
             OkCommand = new RelayCommand(obj => OkButton());
             RandomDataCommand = new RelayCommand(obj => RamdomData());
 #if (DEBUG)
-            isVisibleRandomButton = true;
+            IsVisibleRandomButton = true;
 #else
             isVisibleRandomButton = false;
 #endif

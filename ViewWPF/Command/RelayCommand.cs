@@ -8,6 +8,9 @@ using System.Windows.Input;
 namespace ViewWPF.Command
 {
     //TODO: XML
+    /// <summary>
+    /// Класс для создания команд
+    /// </summary>
     public class RelayCommand : ICommand
     {
         private Action<object> execute;

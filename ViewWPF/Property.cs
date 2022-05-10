@@ -73,7 +73,7 @@ namespace ViewWPF
             Source = source;
             PropertyInfo = propertyInfo;
             //TODO: RSDN
-            PropertyName = propertyInfo.Name.Substring(0,1)+Regex.Replace(
+            PropertyName = propertyInfo.Name.Substring(0,1) + Regex.Replace(
                 propertyInfo.Name.Substring(1),@"([A-Z])", " $1").Trim().ToLower();
         }
 
