@@ -1,10 +1,12 @@
-﻿using Microsoft.Win32;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Microsoft.Win32;
 using Model;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
-using ViewWPF.Command;
 
 namespace ViewWPF.ViewModel
 {
@@ -12,12 +14,17 @@ namespace ViewWPF.ViewModel
     /// <summary>
     /// ViewModel
     /// </summary>
-    public class MainWindowVM : ViewModelBase
+    public class MainWindowVM : ObservableObject
     {
         /// <summary>
         /// Список с изданиями
         /// </summary>
         private ObservableCollection<EditionBase> _editionBases;
+
+        /// <summary>
+        /// Поиск
+        /// </summary>
+        private string _searchText;
 
         /// <summary>
         /// Выбранный элемент listbox
@@ -27,7 +34,18 @@ namespace ViewWPF.ViewModel
         /// <summary>
         /// Свойство для фильтрации изданий
         /// </summary>
-        public string SearchText { get; set; }
+        public string SearchText 
+        { 
+            get
+            {
+                return _searchText;
+            }
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(EditionBases));
+            }
+        }
 
         /// <summary>
         /// Команда открытия окна для добавления объекта
@@ -70,6 +88,7 @@ namespace ViewWPF.ViewModel
             set
             {
                 _editionBases = value;
+                OnPropertyChanged(nameof(EditionBases));
             }
         }
 
@@ -81,11 +100,10 @@ namespace ViewWPF.ViewModel
             Book book1 = new Book("Филиппова А.Г", "История", "учебное пособие",
                 "Москва", "Юнион", 2011, 126);
             EditionBases = new ObservableCollection<EditionBase>() { book1 };
-            SaveCommand = new RelayCommand(obj => SaveFile());
-            OpenCommand = new RelayCommand(obj => OpenFile());
-            AddObjectCommand=new RelayCommand(obj => AddObject());
-            RemoveObjectCommand = new RelayCommand(obj => EditionBases.
-                Remove(SelectionEditionBase));
+            SaveCommand = new RelayCommand(SaveFile);
+            OpenCommand = new RelayCommand(OpenFile);
+            AddObjectCommand = new RelayCommand(AddObject);
+            RemoveObjectCommand = new RelayCommand(() => DeleteObjects());
         }
 
         /// <summary>
@@ -149,6 +167,18 @@ namespace ViewWPF.ViewModel
             if (addObjectVM.ShowDialog() != null)
             {
                 EditionBases.Add(addObjectVM.SelectedEdition);
+            }
+        }
+
+        /// <summary>
+        /// Удаление выбранного элемента
+        /// </summary>
+        /// <param name="obj"></param>
+        private void DeleteObjects()
+        {
+            while (SelectionEditionBase !=null)
+            {
+                EditionBases.Remove(SelectionEditionBase);
             }
         }
     }

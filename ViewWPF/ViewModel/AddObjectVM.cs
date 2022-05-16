@@ -1,4 +1,6 @@
-﻿using Model;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,7 +9,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using ViewWPF.Command;
 
 namespace ViewWPF.ViewModel
 {
@@ -15,7 +16,7 @@ namespace ViewWPF.ViewModel
     /// <summary>
     /// ViewModel
     /// </summary>
-    public class AddObjectVM : ViewModelBase
+    public class AddObjectVM : ObservableObject
     {
         //TODO: RSDN
         /// <summary>
@@ -78,6 +79,7 @@ namespace ViewWPF.ViewModel
             set
             {
                 _propertyes = value;
+                OnPropertyChanged(nameof(Propertyes));
             }
         }
 
@@ -106,6 +108,7 @@ namespace ViewWPF.ViewModel
                         SelectedEdition = new Thesis();
                         break;
                 }
+                OnPropertyChanged(nameof(Propertyes));
             }
         }
 
@@ -117,12 +120,12 @@ namespace ViewWPF.ViewModel
             ListNameClass = Assembly.GetAssembly(typeof(EditionBase))
                 .GetTypes().Where(type => type.IsSubclassOf(typeof(EditionBase))).ToList();
             SelectedTypeOFEdition = ListNameClass[0];
-            OkCommand = new RelayCommand(obj => OkButton());
-            RandomDataCommand = new RelayCommand(obj => RamdomData());
+            OkCommand = new RelayCommand(OkButton);
+            RandomDataCommand = new RelayCommand(RamdomData);
 #if (DEBUG)
             IsVisibleRandomButton = true;
 #else
-            isVisibleRandomButton = false;
+            IsVisibleRandomButton = false;
 #endif
             _view = new AddObject();
             _view.DataContext = this;

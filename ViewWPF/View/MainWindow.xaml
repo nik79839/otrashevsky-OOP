@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ViewWPF" xmlns:viewmodel="clr-namespace:ViewWPF.ViewModel"
         mc:Ignorable="d"
+        MinWidth="600" MinHeight="300"
         Title="MainWindow" Height="500" Width="600"
         d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowVM}"
-        xmlns:uc="clr-namespace:ViewWPF">
+        xmlns:uc="clr-namespace:ViewWPF" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>
@@ -29,7 +30,7 @@
             </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem Header="Add object" Command="{Binding AddObjectCommand}"/>
-                <MenuItem Header="Remove object" Command="{Binding RemoveObjectCommand}"/>
+                <MenuItem Header="Remove object" CommandParameter="{Binding ElementName=items,Path=SelectedItems}" Command="{Binding RemoveObjectCommand}"/>
             </MenuItem>
         </Menu>
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,3,0">
