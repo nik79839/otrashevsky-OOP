@@ -113,7 +113,6 @@ namespace Model
         /// Check on empty string
         /// </summary>
         /// <param name="value">Value for checking</param>
-        /// //TODO: XML
         /// <returns>If the check is passed then returns the input value</returns>
         /// <exception cref="ArgumentException"></exception>
         protected string CheckEmpty(string value)

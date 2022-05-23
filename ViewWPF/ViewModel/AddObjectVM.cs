@@ -12,7 +12,6 @@ using System.Windows;
 
 namespace ViewWPF.ViewModel
 {
-    //TODO: XML
     /// <summary>
     /// ViewModel of AddObject window
     /// </summary>
@@ -32,8 +31,7 @@ namespace ViewWPF.ViewModel
         /// View
         /// </summary>
         private AddObject _view;
-
-        //TODO: RSDN
+        
         /// <summary>
         /// Видимость кнопки задания случайных данных
         /// </summary>

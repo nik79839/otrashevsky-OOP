@@ -10,7 +10,6 @@ using System.Windows;
 
 namespace ViewWPF.ViewModel
 {
-    //TODO: XML
     /// <summary>
     /// ViewModel of main window
     /// </summary>
@@ -74,17 +73,10 @@ namespace ViewWPF.ViewModel
         {
             get
             {
-                if (string.IsNullOrEmpty(SearchText))
-                {
-                    return _editionBases;
-                }
-                else
-                {
-                    //TODO: RSDN
-                    return new ObservableCollection<EditionBase>(_editionBases.
-                        Where(x => x.Info.ToLower().Contains(SearchText.
-                        ToLower())));
-                }
+                return string.IsNullOrEmpty(SearchText)
+                    ? _editionBases
+                    : new ObservableCollection<EditionBase>(_editionBases.Where(x =>
+                        x.Info.ToLower().Contains(SearchText.ToLower())));
             }
             set
             {
@@ -174,7 +166,6 @@ namespace ViewWPF.ViewModel
         /// <summary>
         /// Удаление выбранного элемента
         /// </summary>
-        /// <param name="obj">//TODO: XML</param>
         private void DeleteObjects()
         {
             while (SelectionEditionBase !=null)
