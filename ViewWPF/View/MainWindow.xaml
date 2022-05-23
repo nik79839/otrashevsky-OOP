@@ -15,10 +15,10 @@
             <RowDefinition Height="184*"></RowDefinition>
         </Grid.RowDefinitions>
         <GroupBox Header="Editon list" Grid.Column="0" Grid.Row="1" Margin="10,10,10,10">
-            <ListBox Name="items" ItemsSource="{Binding EditionBases}" SelectedItem="{Binding SelectionEditionBase}" SelectionMode="Extended">
+            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="items" ItemsSource="{Binding EditionBases}" SelectedItem="{Binding SelectionEditionBase}" SelectionMode="Extended">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding Path=Info}"/>
+                        <TextBlock Text="{Binding Path=Info}" TextWrapping="WrapWithOverflow"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
