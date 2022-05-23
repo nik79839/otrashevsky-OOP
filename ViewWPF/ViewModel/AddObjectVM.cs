@@ -18,7 +18,6 @@ namespace ViewWPF.ViewModel
     /// </summary>
     public class AddObjectVM : ObservableObject
     {
-        //TODO: RSDN
         /// <summary>
         /// Выбранный тип в combobox
         /// </summary>

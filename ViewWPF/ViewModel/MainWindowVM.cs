@@ -173,7 +173,7 @@ namespace ViewWPF.ViewModel
         /// <summary>
         /// Удаление выбранного элемента
         /// </summary>
-        /// <param name="obj"></param>
+        /// <param name="obj">//TODO: XML</param>
         private void DeleteObjects()
         {
             while (SelectionEditionBase !=null)

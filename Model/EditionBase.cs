@@ -118,7 +118,7 @@ namespace Model
         /// <exception cref="ArgumentException"></exception>
         protected string CheckEmpty(string value)
         {
-            if (value==String.Empty)
+            if (value == String.Empty)
             {
                 throw new ArgumentException($"Line should not be empty!");
             }

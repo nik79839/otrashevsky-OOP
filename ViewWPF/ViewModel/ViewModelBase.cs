@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ViewWPF.ViewModel
 {
+    //TODO: убрать?
     /// <summary>
     /// Абстрактный класс, реализующий INotifyPropertyChanged
     /// </summary>
