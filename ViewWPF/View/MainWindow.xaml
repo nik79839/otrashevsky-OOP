@@ -18,7 +18,7 @@
             <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="items" ItemsSource="{Binding EditionBases}" SelectedItem="{Binding SelectionEditionBase}" SelectionMode="Extended">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Path=Info}" TextWrapping="WrapWithOverflow"/>
+                        <TextBlock Text="{Binding Path=Info}" TextWrapping="WrapWithOverflow" Margin="0,0,0,5"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
