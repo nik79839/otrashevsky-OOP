@@ -97,7 +97,6 @@
     <Compile Include="Serializer.cs" />
     <Compile Include="ViewModel\AddObjectVM.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
-    <Compile Include="ViewModel\ViewModelBase.cs" />
     <Page Include="View\AddObject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

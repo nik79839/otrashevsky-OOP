@@ -14,7 +14,7 @@ namespace ViewWPF.ViewModel
 {
     //TODO: XML
     /// <summary>
-    /// ViewModel
+    /// ViewModel of AddObject window
     /// </summary>
     public class AddObjectVM : ObservableObject
     {
@@ -35,7 +35,7 @@ namespace ViewWPF.ViewModel
 
         //TODO: RSDN
         /// <summary>
-        /// Экземпляр издания
+        /// Видимость кнопки задания случайных данных
         /// </summary>
         public bool IsVisibleRandomButton { get; set; }
 

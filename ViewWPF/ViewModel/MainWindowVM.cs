@@ -12,7 +12,7 @@ namespace ViewWPF.ViewModel
 {
     //TODO: XML
     /// <summary>
-    /// ViewModel
+    /// ViewModel of main window
     /// </summary>
     public class MainWindowVM : ObservableObject
     {
@@ -81,8 +81,9 @@ namespace ViewWPF.ViewModel
                 else
                 {
                     //TODO: RSDN
-                    return new ObservableCollection<EditionBase>(_editionBases.Where(
-                            x => x.Info.ToLower().Contains(SearchText.ToLower())));
+                    return new ObservableCollection<EditionBase>(_editionBases.
+                        Where(x => x.Info.ToLower().Contains(SearchText.
+                        ToLower())));
                 }
             }
             set
